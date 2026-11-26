@@ -2,7 +2,7 @@
 
 The previous chapter said what can be customized, and what the tool checks for each kind of customization. This chapter shows it in practice. It uses the vending machine's second change, `refuse-without-exact-change`, which chapter 4 quotes in full. The chapter makes this change again under a schema of its own, `with-trace`. The schema adds one artifact, a trace, between the design and the tasks. The chapter shows every file that the customization adds or changes. It also shows the console input and the main output of each step. The proposal, the delta, the design and the tasks of the change are chapter 4's. This chapter points to them and does not repeat them. The table of section 13.6 lists the four needs of the example and the place where each need is met.
 
-The walkthrough ran on OpenSpec 2.1.1 in a scratch project on 20 November 2026. The scratch project starts from the machine's own configuration and from a main specification that holds the first change's result. This chapter is the only one in the book that shows console blocks. Its claims are what the program printed, and a reader can check them only by seeing that output. A line that begins with `$ ` is input, and the lines after it are the program's output. The project's folder is written as `.`, and the program's own install folder as `<package>`. A line of three dots marks output that is cut. No block shows the work of an agent. The files were written by hand in the scratch project.
+The walkthrough ran on OpenSpec 2.2.0 in a scratch project on 26 November 2026. The scratch project starts from the machine's own configuration and from a main specification that holds the first change's result. This chapter is the only one in the book that shows console blocks. Its claims are what the program printed, and a reader can check them only by seeing that output. A line that begins with `$ ` is input, and the lines after it are the program's output. The project's folder is written as `.`, and the program's own install folder as `<package>`. A line of three dots marks output that is cut. No block shows the work of an agent. The files were written by hand in the scratch project.
 
 ## 14.1 Preparing the harness
 
@@ -160,7 +160,7 @@ So far, the change's folder holds one file, `.openspec.yaml`. From now on, this 
 
 ```
 schema: with-trace
-created: 2026-11-20
+created: 2026-11-26
 ```
 
 `openspec status` lists the artifacts and what blocks each one. There are five artifacts, not four. The trace is blocked until both the specs and the design exist.
@@ -344,13 +344,13 @@ Applying changes to openspec/specs/purchase/spec.md:
   ~ 1 modified
 Totals: + 0, ~ 1, - 0, → 0
 Specs updated successfully.
-Change 'refuse-without-exact-change' archived as '2026-11-20-refuse-without-exact-change'.
+Change 'refuse-without-exact-change' archived as '2026-11-26-refuse-without-exact-change'.
 ```
 
 The command moves the whole folder, as chapter 12 said. The archived folder holds the trace beside the design.
 
 ```
-$ ls openspec/changes/archive/2026-11-20-refuse-without-exact-change/
+$ ls openspec/changes/archive/2026-11-26-refuse-without-exact-change/
 design.md
 proposal.md
 specs

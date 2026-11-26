@@ -18,11 +18,11 @@ The book is published in several formats. All of them contain the same text.
 
 | File | Format | Best for |
 |---|---|---|
-| [`dist/sdd-book-a4.pdf`](dist/sdd-book-a4.pdf) | PDF, A4 portrait, 155 pages | reading on screen or printing single sheets |
-| [`dist/sdd-book-a5.pdf`](dist/sdd-book-a5.pdf) | PDF, A5, 252 pages | reading on a tablet |
+| [`dist/sdd-book-a4.pdf`](dist/sdd-book-a4.pdf) | PDF, A4 portrait, 157 pages | reading on screen or printing single sheets |
+| [`dist/sdd-book-a5.pdf`](dist/sdd-book-a5.pdf) | PDF, A5, 254 pages | reading on a tablet |
 | [`dist/sdd-book.epub`](dist/sdd-book.epub) | EPUB 3 | e-readers |
 | [`dist/book.html`](dist/book.html) | single HTML page | reading in a browser |
-| [`dist/sdd-booklet-a4.pdf`](dist/sdd-booklet-a4.pdf) | PDF, A5 pages imposed on A4 landscape, 126 sides | printing a folded booklet |
+| [`dist/sdd-booklet-a4.pdf`](dist/sdd-booklet-a4.pdf) | PDF, A5 pages imposed on A4 landscape, 128 sides | printing a folded booklet |
 
 The Markdown source of every chapter is in [`chapters/`](chapters/). GitHub
 renders those files directly, so the book can also be read chapter by chapter
@@ -68,12 +68,12 @@ If the backs come out upside down, the printer driver is reading the
 orientation the other way round. Choose the long edge and print again. One of
 the two settings is always correct.
 
-The booklet has 126 sides, so it needs 63 sheets. Any blank pages at the end
+The booklet has 128 sides, so it needs 64 sheets. Any blank pages at the end
 are padding that completes the last sheet.
 
 ## Versions
 
-The book describes OpenSpec 2.1.1, as checked on 20 November 2026. Later
+The book describes OpenSpec 2.2.0, as checked on 26 November 2026. Later
 versions may behave differently. The date on each title page shows when that
 edition was built.
 

@@ -14,7 +14,7 @@ Chapters 11 and 12 showed how the first is checked. `validate` reads a change's 
 
 ## 16.2 What every check compares
 
-Every check the tool makes compares one change with the main specifications. A scratch project on OpenSpec 2.1.1 showed this on 20 November 2026. It had one main requirement with one scenario. Two changes modified the wording of that requirement. One added the words "from its stock", and the other added "and notes". Both carried every scenario that the main specification had. Each change passed `validate --strict` on its own. Both passed `validate --changes --strict` in one run. `list` showed both as complete. No output named the overlap.
+Every check the tool makes compares one change with the main specifications. A scratch project on OpenSpec 2.2.0 showed this on 26 November 2026. It had one main requirement with one scenario. Two changes modified the wording of that requirement. One added the words "from its stock", and the other added "and notes". Both carried every scenario that the main specification had. Each change passed `validate --strict` on its own. Both passed `validate --changes --strict` in one run. `list` showed both as complete. No output named the overlap.
 
 The other commands are the same. `status` takes one change by name, or all of them with `--all`. It has no option that relates two changes. A change's metadata file `.openspec.yaml` holds the schema and the date of creation. In a change that declares no spec changes, it also holds `skip_specs`. It has no field that names another change. So a pass says that a change is well formed against the main specification as it stands when the check runs. It says nothing about the main specification as it will stand after another change has been archived.
 
@@ -57,7 +57,7 @@ The skill does not tell the agent to run the code or to run a test. It asks whet
 
 The skill also says what a report is not. In the skill's words, a check marked "Not verified" describes a limit of the report. It is not a new condition for archive, which keeps its own checks. Two things can stop the skill. First, before the first step that writes anything, a shared project-root guard checks that the project has an OpenSpec root. When the project has none, the guard stops and asks. Second, when the change to verify is vague or ambiguous, the skill asks the user to choose one.
 
-Verify is outside this repository's profile, which lists seven workflows. This chapter depends on the skill text of 2.1.1. It says nothing about how well an agent carries out that text.
+Verify is outside this repository's profile, which lists seven workflows. So in this repository, a request for verify reaches the router's shorter path of section 15.1, not this skill. This chapter depends on the skill text of 2.2.0. It says nothing about how well an agent carries out that text.
 
 ## 16.6 The scenario as the unit of a check
 

@@ -17,7 +17,7 @@ The table lists the workflows and the `validate` command again. The four that th
 
 ## 10.1 Explore: thinking before a change exists
 
-The skill `openspec-explore`, as OpenSpec 2.1.1 installs it, calls itself "a stance, not a workflow", and it has no stages. It tells the agent to think with the developer. The agent reads the project before it asks about anything it can find out itself. It asks one question at a time, and it never writes code. The skill allows writes only within a scope that the developer has confirmed. Before the first write, the agent names the files and asks for a yes or no in a separate message. An answer to a design question is never consent. There is one exception: the developer's own request to capture the exploration as a change. That request covers the change and the artifacts that the request names.
+The skill `openspec-explore`, as OpenSpec 2.2.0 installs it, calls itself "a stance, not a workflow", and it has no stages. It tells the agent to think with the developer. The agent reads the project before it asks about anything it can find out itself. It asks one question at a time, and it never writes code. The skill allows writes only within a scope that the developer has confirmed. Before the first write, the agent names the files and asks for a yes or no in a separate message. An answer to a design question is never consent. There is one exception: the developer's own request to capture the exploration as a change. That request covers the change and the artifacts that the request names.
 
 The card shows the five rows that the card of every workflow has.
 
@@ -46,7 +46,7 @@ Explore leaves nothing unless something is captured. The skill ends in a proposa
 
 ## 10.2 Propose: the whole plan in one run
 
-The skill `openspec-propose`, read on OpenSpec 2.1.1, creates a change and writes every artifact that the change needs in one run, in seven numbered stages. The agent asks the developer only about an ambiguity that would change the scope, the observable behaviour, the compatibility or the acceptance criteria. For a minor detail, it makes a reasonable assumption and records it in the artifacts. The request authorises planning only. The skill tells the agent to stop once the artifacts exist, and not to implement what the request asked to build. Sections 5.1, 6.1, 7.1 and 8.1 say who writes each artifact and what the developer's part in it is. This chapter does not repeat them.
+The skill `openspec-propose`, read on OpenSpec 2.2.0, creates a change and writes every artifact that the change needs in one run, in seven numbered stages. The agent asks the developer only about an ambiguity that would change the scope, the observable behaviour, the compatibility or the acceptance criteria. For a minor detail, it makes a reasonable assumption and records it in the artifacts. The request authorises planning only. The skill tells the agent to stop once the artifacts exist, and not to implement what the request asked to build. Sections 5.1, 6.1, 7.1 and 8.1 say who writes each artifact and what the developer's part in it is. This chapter does not repeat them.
 
 The card shows the five rows for propose.
 

@@ -1,10 +1,10 @@
 # 17. The Commands No Workflow Calls
 
-Chapters 9 to 16 examined the workflows in detail. They also examined the commands that the workflows' skills tell the agent to run. The program has more commands than that. A developer runs some of them by hand, a script runs some, and some nobody needs until something goes wrong. This chapter discusses the commands that no skill runs and no earlier chapter explains. It asks each group the questions that chapter 9 asks of a workflow. Who acts? What is read and written? What can stop it? How does a reviewer judge what it did? What happens when its result is wrong? A command has no stages. So each group gets a table that fits it, in the form chapter 15 used for the workflows outside the profile. The chapter describes OpenSpec 2.1.1.
+Chapters 9 to 16 examined the workflows in detail. They also examined the commands that the workflows' skills tell the agent to run. The program has more commands than that. A developer runs some of them by hand, a script runs some, and some nobody needs until something goes wrong. This chapter discusses the commands that no workflow skill runs and no earlier chapter explains. It asks each group the questions that chapter 9 asks of a workflow. Who acts? What is read and written? What can stop it? How does a reviewer judge what it did? What happens when its result is wrong? A command has no stages. So each group gets a table that fits it, in the form chapter 15 used for the workflows outside the profile. The chapter describes OpenSpec 2.2.0.
 
-## 17.1 The commands that no skill runs
+## 17.1 The commands that no workflow skill runs
 
-`openspec --help` lists 24 commands. The twelve skills of 2.1.1 tell the agent to run twelve of them: `init`, `update`, `context`, `schemas`, `new change`, `status`, `instructions`, `list`, `show`, `validate`, `archive`, and `store list` as the one form of `store`. The workflow chapters described those. No skill runs two more, and chapter 13 explains them: `config`, which holds the profile, and `schema`, which chapter 14 used to fork a schema. The others have no chapter yet. The table sorts them into four groups.
+`openspec --help` lists 24 commands. The twelve workflow skills of 2.2.0 tell the agent to run twelve of them: `init`, `update`, `context`, `schemas`, `new change`, `status`, `instructions`, `list`, `show`, `validate`, `archive`, and `store list` as the one form of `store`. The workflow chapters described those. No workflow skill runs two more, and chapter 13 explains them: `config`, which holds the profile, and `schema`, which chapter 14 used to fork a schema. The others have no chapter yet. The table sorts them into four groups.
 
 | Command | What it does | Group |
 |---|---|---|
@@ -17,6 +17,8 @@ Chapters 9 to 16 examined the workflows in detail. They also examined the comman
 | `workset` | Saves named sets of folders on the machine. | Working across repositories |
 | `version`, `install` | Report the program's release, and install the standalone program. | The program itself |
 | `completion`, `feedback` | Add shell completion, and send feedback to the OpenSpec project. | The program itself |
+
+The router of 2.2.0 names four of the commands in the table, and `config profile`, in one line each. Its file of answers names `view`, `templates` and `config profile` as answers to a developer's question. It tells the agent to run `doctor` when something seems wrong. It tells the agent to send `feedback` only after the user approves the message. The router does not say what the result of any of them means. So the groups of the table still hold.
 
 Chapters 10 and 16 name `show` for other forms. `--diff` is the one form that no chapter has used. It belongs with the commands that read.
 

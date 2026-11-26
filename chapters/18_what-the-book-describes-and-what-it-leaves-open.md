@@ -6,7 +6,7 @@ The book has followed one tool from its conventions to the commands that no work
 
 The first two chapters are about the method, not the tool. Chapter 1 argued that work done with a model needs a record that outlives the conversation. It also argued that the record has a cost, and that the record must be worth that cost. Chapter 2 named the cornerstones that such a record must satisfy. OpenSpec appeared there as one implementation, and section 1.6 said that it is replaceable in the argument.
 
-From chapter 3 on, the book is a technical description of one tool in one release, OpenSpec 2.1.1. It describes what the tool writes, what it reads, what it checks and what it leaves to the developer. It describes these in the order in which a change meets them.
+From chapter 3 on, the book is a technical description of one tool in one release, OpenSpec 2.2.0. It describes what the tool writes, what it reads, what it checks and what it leaves to the developer. It describes these in the order in which a change meets them.
 
 | Chapters | What they describe |
 |---|---|
@@ -40,14 +40,14 @@ The questions below follow from what the book showed. Each names the chapter who
 ### Introducing and keeping it
 
 - **How does a system without specifications get them?** Section 15.6 showed onboard doing one change on a real task in an existing project. The book does not show how to write the main specifications of a system that has none, from code that already runs.
-- **How does a project move between releases?** The book moved from 2.0.0 to 2.1.1. It noted the differences where they mattered, in sections 3.1 and 9.2. It does not show how a project with many changes moves its artifacts and its skills through a release.
+- **How does a project move between releases?** The book moved from 2.0.0 to 2.1.1, and then to 2.2.0. At each move it repeated its runs. It noted the differences where they mattered, in sections 3.1, 9.2, 9.3 and 15.1. It does not show how a project with many changes moves its artifacts and its skills through a release.
 - **How fast does a specification drift?** Section 2.6 said that a specification must be maintained. Section 3.7 said that nothing checks afterwards whether the specification and the code still agree. The book observed no project for long enough to see drift happen.
 - **What does it cost, and what does it return?** Sections 1.7 and 1.8 described the shape of the cost. They said that the size of the return is not established. The book measured neither.
 
 ### Comparisons
 
 - **Would another spec-driven tool behave differently?** Section 1.6 said that another tool may use different names, different artifacts and a different way of working. Chapter 3 said that a different tool could arrange the same material and still serve the same principles. The book describes how OpenSpec divides the work between the agent, the program and the developer. It does not show how another tool divides it.
-- **Would another spec-driven tool check more?** Section 1.6 said that OpenSpec is replaceable in the argument, and the book compares it with nothing. The finding of section 18.2 is a finding about OpenSpec 2.1.1. Whether another tool closes any part of that gap is open.
+- **Would another spec-driven tool check more?** Section 1.6 said that OpenSpec is replaceable in the argument, and the book compares it with nothing. The finding of section 18.2 is a finding about OpenSpec 2.2.0. Whether another tool closes any part of that gap is open.
 
 None of these questions is a defect found in the tool. Where OpenSpec has a mechanism for one of them, the book has described the mechanism. An example is stores for shared specifications. What the book has not done is use the mechanism where many people, many changes and many months meet. That is where these questions are decided.
 

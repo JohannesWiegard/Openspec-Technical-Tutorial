@@ -1,12 +1,12 @@
 # 15. The Workflows Outside the Table
 
-Chapters 9 to 12 examined seven workflows and one command in detail, and gave each a card and a table of its stages. These are the workflows of one profile. OpenSpec 2.1.1 defines five more. This chapter discusses all five in one place. It gives each a short section in place of a card and a table. Each section answers the questions that chapter 9 asks of a workflow. A reader who wants the stages of a skill reads the skill. The skill is a text in the project's skills folder.
+Chapters 9 to 12 examined seven workflows and one command in detail, and gave each a card and a table of its stages. These are the workflows of one profile. OpenSpec 2.2.0 defines five more. This chapter discusses all five in one place. It gives each a short section in place of a card and a table. Each section answers the questions that chapter 9 asks of a workflow. A reader who wants the stages of a skill reads the skill. The skill is a text in the project's skills folder.
 
 ## 15.1 Five more workflows
 
-The program holds a longer list of workflows than the seven that chapter 9 tables. In OpenSpec 2.1.1 the list has twelve entries: propose, explore, new, continue, apply, update, ff, sync, archive, bulk-archive, verify and onboard.
+The program holds a longer list of workflows than the seven that chapter 9 tables. In OpenSpec 2.2.0 the list has twelve entries: propose, explore, new, continue, apply, update, ff, sync, archive, bulk-archive, verify and onboard.
 
-A project whose profile names all twelve gets twelve skills. A scratch project showed this on 20 November 2026, on 2.1.1. There, `openspec init --scope project` with a global profile that listed all twelve installed twelve skills in the project's skills folder. This repository's profile names seven, so the repository has seven skills. The table of chapter 9 is the table of that profile. It is not wrong because it is shorter than the program's list.
+A project whose profile names all twelve gets thirteen skills: one for each workflow, and the router. A scratch project showed this on 26 November 2026, on 2.2.0. There, `openspec init --scope project` with a global profile that listed all twelve installed thirteen skills in the project's skills folder. This repository's profile names seven, so the repository has eight skills. The table of chapter 9 is the table of that profile. It is not wrong because it is shorter than the program's list.
 
 The table lists the five workflows outside it. The text calls one of them Fast-forward. The program's name for it is `ff`.
 
@@ -19,6 +19,8 @@ The table lists the five workflows outside it. The text calls one of them Fast-f
 | Onboard | the skill `openspec-onboard` | Guide the developer through one whole change, on a real task, with narration. |
 
 None of the five writes a kind of file that the workflows of the table do not write. New and fast-forward write the artifacts that propose and continue write. Verify writes nothing. Bulk-archive moves what archive moves. Onboard writes the artifacts, the code and the archive. The five differ in two things: how much is written or moved in one run, and how much the agent is told to ask.
+
+In this repository, the five have no skill, and the router of 2.2.0 gives each a shorter path. The path is a section of the router's reference file `without-skills.md`. Each section lists the commands of the work, or says what the agent reads. It does not have the checks and the questions of the skill. For new and fast-forward, the section lists `new change`, `status` and `instructions`. It stops after one artifact, or it continues until the plan is complete. For verify, the agent reads the tasks and the specifications against the code, and it changes no file. The section names none of the dimensions or severities of section 15.4. For bulk-archive, the agent archives one change at a time. It does not check the deltas against each other, as the skill does in section 15.5. For onboard, the agent follows the sections for explore, propose, apply and archive.
 
 ## 15.2 New
 
