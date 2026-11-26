@@ -26,7 +26,7 @@ A schema has one more place besides the project's `openspec/schemas/<name>/` fol
 
 The profile is the customization that reaches furthest and is checked least. It decides which workflows are installed as skills, and so which ones a person can ask for. Chapter 9 defines the profile and names the six workflows of the core profile. This section adds one point: the profile is not a setting of the project. It is set with `openspec config profile`, and `openspec config` has only the global scope. So a person who sets it changes it for every project on the machine. The program reminds the person to run `openspec update` in each project, because the skills are rewritten only then.
 
-A project that wants a profile of its own has no setting for it. The way to get one is to keep a separate configuration directory and to start the session with that directory named. The program then reads the profile from there and from nowhere else. This repository does this, and its profile adds the continue workflow to the core six. The profile has one retired field, `delivery`, which 2.2.0 reads and ignores. Where the skills are installed is a second choice with the same reach. From release 2.1, `openspec init` puts them in the machine's `~/.agents/skills/` unless it is given `--scope project`. A project that keeps its own skills records that in its configuration, as this repository does.
+A project that wants a profile of its own has no setting for it. The way to get one is to keep a separate configuration directory and to start the session with that directory named. The program then reads the profile from there and from nowhere else. The profile has one retired field, `delivery`, which 2.2.0 reads and ignores. Where the skills are installed is a second choice with the same reach. From release 2.1, `openspec init` puts them in the machine's `~/.agents/skills/` unless it is given `--scope project`. A project that keeps its own skills records that in its configuration.
 
 The tool reports the result in `openspec config list`. It does not say whether the installed workflows suit the project. A person who is in the wrong directory gets the global profile without a warning.
 
@@ -62,7 +62,7 @@ The fields differ in what they decide. `requires` decides what is possible. An a
 
 `openspec schema validate` checks that the file is well formed. In the scratch project it reported a missing template file, an artifact id that was used twice, and a cycle of requirements, which it named. The customization page lists the same four checks: the syntax, the templates, the cycles and the ids.
 
-A schema is shared by copying its folder. A schema in the user's data directory is available to every project on the machine. The customization page lists seven schemas that others wrote and that are not part of the core. A schema copied from elsewhere is a fork of it. A fork does not receive later changes to the schema it was copied from. The project keeps it up to date by hand, or not at all. This repository's own schema is of this kind: it has no specs, and its design carries a chapter outline.
+A schema is shared by copying its folder. A schema in the user's data directory is available to every project on the machine. The customization page lists seven schemas that others wrote and that are not part of the core. A schema copied from elsewhere is a fork of it. A fork does not receive later changes to the schema it was copied from. The project keeps it up to date by hand, or not at all.
 
 ## 13.6 Where the needs of an example belong
 
