@@ -12,9 +12,9 @@ From chapter 3 on, the book is a technical description of one tool in one releas
 |---|---|
 | 3 | How OpenSpec's conventions carry the cornerstones, and where they stop. |
 | 4 to 8 | One change from request to archive, and each of its four artifacts: the proposal, the specification, the design and the tasks. |
-| 9 to 12 | The workflows of the book's profile, and the `validate` command, ordered by who does the work in each. |
+| 9 to 12 | Seven of the twelve workflows, and the `validate` command, ordered by who does the work in each. |
 | 13 and 14 | Customizing the harness, and one customized change from fork to archive. |
-| 15 to 17 | The five workflows outside the profile, the two comparisons that no check makes, and the commands that no workflow calls. |
+| 15 to 17 | The five workflows outside the table, the two comparisons that no check makes, and the commands that no workflow calls. |
 
 It is not a manual of every option the tool has. It is not a guide to practice either. It says how the tool behaves when a developer uses it. It does not say how a team should organise its work around the tool.
 

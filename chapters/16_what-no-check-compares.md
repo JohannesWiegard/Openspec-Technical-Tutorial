@@ -10,7 +10,7 @@ It is easy to treat three statements about a change as one:
 - Two changes that are open at the same time agree with each other.
 - The code does what a scenario of the specification says.
 
-Chapters 11 and 12 showed how the first is checked. `validate` reads a change's delta and the main specifications. Archive checks the delta again before it merges it. Nothing in those chapters checks the second or the third. The rest of this chapter shows three things: why the first does not cover the other two, what the two workflows outside the profile add, and what the developer does instead.
+Chapters 11 and 12 showed how the first is checked. `validate` reads a change's delta and the main specifications. Archive checks the delta again before it merges it. Nothing in those chapters checks the second or the third. The rest of this chapter shows three things: why the first does not cover the other two, what the two workflows outside the table add, and what the developer does instead.
 
 ## 16.2 What every check compares
 
@@ -57,7 +57,7 @@ The skill does not tell the agent to run the code or to run a test. It asks whet
 
 The skill also says what a report is not. In the skill's words, a check marked "Not verified" describes a limit of the report. It is not a new condition for archive, which keeps its own checks. Two things can stop the skill. First, before the first step that writes anything, a shared project-root guard checks that the project has an OpenSpec root. When the project has none, the guard stops and asks. Second, when the change to verify is vague or ambiguous, the skill asks the user to choose one.
 
-Verify is outside this repository's profile, which lists seven workflows. So in this repository, a request for verify reaches the router's shorter path of section 15.1, not this skill. This chapter depends on the skill text of 2.2.0. It says nothing about how well an agent carries out that text.
+Verify is not one of the seven workflows of chapter 9. In a project whose profile names only those seven, a request for verify reaches the router's shorter path of section 15.1, not this skill. This chapter depends on the skill text of 2.2.0. It says nothing about how well an agent carries out that text.
 
 ## 16.6 The scenario as the unit of a check
 
