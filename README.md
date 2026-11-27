@@ -18,11 +18,11 @@ The book is published in several formats. All of them contain the same text.
 
 | File | Format | Best for |
 |---|---|---|
-| [`dist/sdd-book-a4.pdf`](dist/sdd-book-a4.pdf) | PDF, A4 portrait, 148 pages | reading on screen or printing single sheets |
-| [`dist/sdd-book-a5.pdf`](dist/sdd-book-a5.pdf) | PDF, A5, 234 pages | reading on a tablet |
+| [`dist/sdd-book-a4.pdf`](dist/sdd-book-a4.pdf) | PDF, A4 portrait, 154 pages | reading on screen or printing single sheets |
+| [`dist/sdd-book-a5.pdf`](dist/sdd-book-a5.pdf) | PDF, A5, 244 pages | reading on a tablet |
 | [`dist/sdd-book.epub`](dist/sdd-book.epub) | EPUB 3 | e-readers |
 | [`dist/book.html`](dist/book.html) | single HTML page | reading in a browser |
-| [`dist/sdd-booklet-a4.pdf`](dist/sdd-booklet-a4.pdf) | PDF, A5 pages imposed on A4 landscape, 118 sides | printing a folded booklet |
+| [`dist/sdd-booklet-a4.pdf`](dist/sdd-booklet-a4.pdf) | PDF, A5 pages imposed on A4 landscape, 122 sides | printing a folded booklet |
 
 The Markdown source of every chapter is in [`chapters/`](chapters/). GitHub
 renders those files directly, so the book can also be read chapter by chapter
@@ -51,7 +51,8 @@ The two-digit prefix of each file is the reading order.
 | 15 | [The Workflows Outside the Table](chapters/15_the-workflows-outside-the-table.md) |
 | 16 | [What No Check Compares](chapters/16_what-no-check-compares.md) |
 | 17 | [The Commands No Workflow Calls](chapters/17_the-commands-no-workflow-calls.md) |
-| 18 | [What the Book Describes, and What It Leaves Open](chapters/18_what-the-book-describes-and-what-it-leaves-open.md) |
+| 18 | [A Customization Beyond the Documented Means, and What It Rests On](chapters/18_a-customization-beyond-the-documented-means.md) |
+| 19 | [What the Book Describes, and What It Leaves Open](chapters/19_what-the-book-describes-and-what-it-leaves-open.md) |
 
 ## Printing the booklet
 
@@ -68,7 +69,7 @@ If the backs come out upside down, the printer driver is reading the
 orientation the other way round. Choose the long edge and print again. One of
 the two settings is always correct.
 
-The booklet has 118 sides, so it needs 59 sheets. Any blank pages at the end
+The booklet has 122 sides, so it needs 61 sheets. Any blank pages at the end
 are padding that completes the last sheet.
 
 ## Versions

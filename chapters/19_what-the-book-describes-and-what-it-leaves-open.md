@@ -1,8 +1,8 @@
-# 18. What the Book Describes, and What It Leaves Open
+# 19. What the Book Describes, and What It Leaves Open
 
-The book has followed one tool from its conventions to the commands that no workflow calls. This last chapter says what kind of book that makes it, what it found, and which questions it leaves for the reader to take further. It adds nothing about the tool that an earlier chapter did not establish.
+The book has followed one tool from its conventions to the commands that no workflow calls, and to a customization that goes beyond what it documents. This last chapter says what kind of book that makes it, what it found, and which questions it leaves for the reader to take further. It adds nothing about the tool that an earlier chapter did not establish.
 
-## 18.1 What kind of book this is
+## 19.1 What kind of book this is
 
 The first two chapters are about the method, not the tool. Chapter 1 argued that work done with a model needs a record that outlives the conversation, and that the record has a cost that has to be earned. Chapter 2 named the cornerstones such a record must satisfy. OpenSpec appeared there as one implementation, and section 1.6 said that it is replaceable in the argument.
 
@@ -15,16 +15,17 @@ From chapter 3 on, the book is a technical description of one tool, OpenSpec, as
 | 9 to 12 | Seven of the twelve workflows, and the `validate` command, by who does the work in each. |
 | 13 and 14 | Customizing the harness, and one customized change from fork to archive. |
 | 15 to 17 | The five workflows outside the table, the two comparisons no check makes, and the commands no workflow calls. |
+| 18 | A customization that no documented means carries, and on what it rests through an update. |
 
 It is not a manual of every option the tool has. Nor is it a guide to practice. It says how the tool behaves when a developer uses it, and not how a team should organize its work around it.
 
-## 18.2 The one finding
+## 19.2 The one finding
 
 Chapter after chapter reached the same place. `validate` checks the form of a delta and the main specifications, and not whether the behaviour is the right one. The tasks are counted and not read, so a ticked box is a claim. No check opens the proposal or the design. The planning workflows are visible to the program only as files that exist. A customization is confirmed as well formed, and its effect is not. No check compares two changes with each other or a scenario with the code. The commands that no workflow calls read, check, connect and maintain, and none of them judges a change.
 
 That is one finding, seen from every side: the program checks form and counts, and the developer judges content. Chapter 9 gave it the shape of a division of work, in which the agent writes, the program reports and checks, and the developer decides and reviews. Chapter 3 gave it its reason: human control is the one cornerstone the conventions cannot carry, because a tool can hold a decision and cannot make one. Everything the book said about reviewing an artifact, a workflow or a command is an application of that division to one part of the tool.
 
-## 18.3 What the book leaves open
+## 19.3 What the book leaves open
 
 The questions below follow from what the book showed. Each names the chapter whose finding it extends, and none is answered here, because the book has no evidence to answer it with.
 
@@ -47,7 +48,7 @@ The questions below follow from what the book showed. Each names the chapter who
 ### Comparisons
 
 - **Would another spec-driven tool behave differently?** Section 1.6 said that another tool may use different names, different artifacts and a different workflow, and chapter 3 that a different tool could arrange the same material and still serve the same principles. The book describes how OpenSpec divides the work between the agent, the program and the developer, and it does not show how another tool divides it.
-- **Would another spec-driven tool check more?** The book compares OpenSpec with nothing. The finding of section 18.2 is a finding about the release the book describes, and whether another tool closes any part of it is open.
+- **Would another spec-driven tool check more?** The book compares OpenSpec with nothing. The finding of section 19.2 is a finding about the release the book describes, and whether another tool closes any part of it is open.
 
 None of these questions is a defect found in the tool. Where OpenSpec has a mechanism for one of them, as it has stores for shared specifications, the book has described the mechanism. What it has not done is use the mechanism where many people, many changes and many months meet, and that is where these questions are decided.
 
