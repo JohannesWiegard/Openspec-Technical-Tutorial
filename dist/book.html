@@ -29,7 +29,8 @@
 <div><a href="#ch15">15. The Workflows Outside the Table</a></div>
 <div><a href="#ch16">16. What No Check Compares</a></div>
 <div><a href="#ch17">17. The Commands No Workflow Calls</a></div>
-<div><a href="#ch18">18. What the Book Describes, and What It Leaves Open</a></div>
+<div><a href="#ch18">18. A Customization Beyond the Documented Means, and What It Rests On</a></div>
+<div><a href="#ch19">19. What the Book Describes, and What It Leaves Open</a></div>
   </div>
 </section>
 <h1 class="chapter" id="ch01">1. From AI-Assisted Coding to Spec-Driven Development</h1>
@@ -3828,7 +3829,7 @@ because the product is already gone when the refund is decided.
 </table>
 <p>The tool reports the schema valid and the trace blocked or ready. It does not check that the trace is true, or that the line in the apply instruction is followed, and it cannot find a scenario that nobody wrote. The first version's failure was a case that had no scenario until the second change added it, so the trace would have made the design's non-goal visible once the scenario existed, and the coverage review of chapter 6 remains the check that finds a scenario that is missing. The example is also a fork, with the cost that section 13.5 names.</p>
 <h2>13.7 What is outside of OpenSpec</h2>
-<p>The instruction file is the fourth place in which a rule can be written, and OpenSpec has no mechanism for it. The program's cleanup code treats two things as left by earlier versions: a managed <code>openspec/AGENTS.md</code>, and a block of text between two markers in the root <code>AGENTS.md</code>. In the scratch project, <code>openspec init</code> removed the managed file and the marked block from a project that still had them, and kept the rest of the root file as the person had written it. <code>openspec update</code> alone changed neither. The root file belongs to the project, and nothing in OpenSpec generates, reads or checks it.</p>
+<p>The instruction file is the fourth place in which a rule can be written, and OpenSpec has no mechanism for it. The program's cleanup code treats two things as left by earlier versions: a managed <code>openspec/AGENTS.md</code>, and a block of text between two markers in the root <code>AGENTS.md</code>. In the scratch project, <code>openspec init</code> removed the managed file and the marked block from a project that still had them, and kept the rest of the root file as the person had written it. <code>openspec update</code> alone changed neither. The root file belongs to the project, and nothing in OpenSpec generates, reads or checks it. It is not the only such place: chapter 18 takes a text of the project's own, kept in the skills folder beside the generated skills, that OpenSpec does not generate or check either.</p>
 <p>That is why it is not a row of the table. The last column of the table says what the tool checks, and a row that says "Nothing" about a file the tool does not know would suggest that the tool does something with it. It is better compared with the project configuration, which is the place nearest to it.</p>
 <table>
 <thead>
@@ -4669,9 +4670,173 @@ Change 'refuse-without-exact-change' is valid
 </ul>
 <p>Before a command of the third or fourth group, the developer can say in one sentence what it will write and where, and run <code>git status</code> and the matching <code>list</code> afterwards: <code>store list</code>, <code>workset list</code> or <code>version</code>.</p>
 <p>The commands that no workflow calls read the record, check the harness, connect repositories and maintain the program, and none of them judges a change. Reading and checking leave the project as it was, and say nothing that <code>validate</code>, <code>list</code> and <code>status</code> do not. Connecting writes the machine's state, which no clone carries and which <code>doctor</code> can find missing. Maintaining reaches the shell, the install and a public tracker. So the developer's review of these commands is not of a change, but of the machine they wrote to and of what left it.</p>
-<h1 class="chapter" id="ch18">18. What the Book Describes, and What It Leaves Open</h1>
-<p>The book has followed one tool from its conventions to the commands that no workflow calls. This last chapter says what kind of book that makes it, what it found, and which questions it leaves for the reader to take further. It adds nothing about the tool that an earlier chapter did not establish.</p>
-<h2>18.1 What kind of book this is</h2>
+<h1 class="chapter" id="ch18">18. A Customization Beyond the Documented Means, and What It Rests On</h1>
+<p>Chapters 13 and 14 customized OpenSpec through the files it documents: the profile, the project configuration and the schema. This chapter takes a need that none of those files meets, and a customization that a project built for it anyway. It asks which documented means were tried and why each fell short, what was used instead, on what each part of it rests, and why it is still there after <code>openspec update</code>. The example is a customization made for one use case, and the chapter shows it as far as the reader needs it to follow, and no further.</p>
+<h2>18.1 A state that outlives the conversation</h2>
+<p>Explore keeps what it finds in the conversation. The skill <code>openspec-explore</code> says so in one of its rules: "Track decisions in the conversation, not in files." Section 10.1 showed the consequence: explore leaves nothing unless the developer asks for it to be captured as a change.</p>
+<p>That is enough for an exploration that ends in one sitting. It is not enough for one that is carried out over several sittings, or that moves to a new session, because a new session begins without the conversation of the last one. What was decided, what is still open and what was rejected are then held by the developer's memory, or by nobody.</p>
+<p>The customization keeps that state in a file. The file holds the latest state of one topic: its decisions, its open questions, the options it rejected and its next step. It is not a transcript, and it is not an artifact of a change. It exists before any change does, and it is removed once the change it led to has been proposed.</p>
+<h2>18.2 What the documented means cannot reach</h2>
+<p>The first question of section 13.1 is which kind a need belongs at. For this need the answer is none of them, and the table says why for each means that was considered.</p>
+<table>
+<thead>
+<tr>
+<th>Means</th>
+<th>What it reaches</th>
+<th>Why it cannot carry the rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>An edit to the generated skill <code>openspec-explore</code></td>
+<td>The text the agent reads in explore</td>
+<td><code>openspec update</code> writes the skill back. In the scratch project, a line added to it was gone after the update, which reported that the "skill files differ from the generated content".</td>
+</tr>
+<tr>
+<td><code>operations</code> in the configuration</td>
+<td>Advice for apply and archive</td>
+<td>The documentation names <code>operations.apply.guidance</code> and <code>operations.archive.guidance</code>, and nothing for explore. A run showed that an entry for explore is ignored with a warning.</td>
+</tr>
+<tr>
+<td><code>rules</code> in the configuration</td>
+<td>The instruction of the artifact whose id matches</td>
+<td>Explore writes no artifact while it explores, so no rule is ever read for it.</td>
+</tr>
+<tr>
+<td>A schema, or a fork of one</td>
+<td>The artifacts of a change, their order, and what the agent is told when it writes each</td>
+<td>A schema has no place for an instruction that holds while a conversation goes on.</td>
+</tr>
+<tr>
+<td>The profile</td>
+<td>Which workflows are installed</td>
+<td>It selects workflows and changes none.</td>
+</tr>
+</tbody>
+</table>
+<p>Of the five, the schema needs a closer look, because chapters 13 and 14 used one to add a file to every change, and that seems the obvious way to add a file here too.</p>
+<p>A schema describes a change: which files it has, in which order they are written, and what the agent is told when it writes each one. Explore comes into contact with a schema only where there is a change. When the developer explores a change that already exists, the schema tells explore which files to read. When the developer asks for the exploration to be captured as a new change, the schema tells explore what to write.</p>
+<p>The log is needed earlier than either. It is written while the developer and the agent are still talking, before any change exists, and at that point explore reads nothing from a schema. A fork would come too late. It could also only add a file to a change, and that file would stay in the change and go into the archive with it, which is the opposite of a note that is removed once a change has been proposed.</p>
+<p>Chapter 14's trace shows the difference. The trace belongs to a change and is meant to be kept in the archive, so a fork was the right way to add it. The log belongs to the conversation before there is a change, so a fork is the wrong way, and the cost of keeping one up to date, which sections 13.5 and 14.7 describe, would buy nothing.</p>
+<h2>18.3 The configuration's context, and a text of the project's own</h2>
+<p>Two things carry the customization. The rule reaches explore through <code>context</code> in <code>openspec/config.yaml</code>, and the procedure is held in a text that the project wrote itself.</p>
+<p>The documentation says that context "appears in ALL artifacts", and section 13.3 showed it returned with every instruction the agent asks for. That is the documented part. Explore is not an artifact, and the documentation does not say that explore reads <code>context</code>. The generated skill does: at its start it reads the project's <code>openspec/config.yaml</code> and treats <code>context</code> and <code>rules</code> as constraints to follow and not to copy. So the rule reaches explore because of what the skill does, not because of what the documentation promises.</p>
+<p>This is the paragraph of <code>context</code> in the project's <code>openspec/config.yaml</code>, as the change <code>add-explore-log</code> left it. It is shown without its indentation, with its lines broken anew and split into paragraphs; the wording is unchanged.</p>
+<pre><code class="language-text">Explore log (owner, 27 November 2026): during an explore session, follow
+the project skill explore-log (`.agents/skills/explore-log/SKILL.md`).
+
+At the start of a new session, read the matching log before the first
+checkpoint.
+
+Keep the current state in openspec/.explore/log-&lt;topic&gt;.md, one file per
+topic, written at checkpoints by a subagent.
+
+This log write is the one explore write allowed without asking; every
+other write keeps the confirmation rule.
+
+The directory is ignored by git.
+
+A standalone openspec-propose run deletes the matching log; ask when the
+match is ambiguous. Explore's own capture leaves it in place.
+</code></pre>
+<p>The paragraph calls the text a project skill. The name says where the text is kept and what form it has: it is a <code>SKILL.md</code> in a folder of its own under <code>.agents/skills/</code>, beside the skills OpenSpec generates, and like them it begins with front matter that gives a name and a description. In this book a skill is the text through which OpenSpec delivers one workflow, as section 9.2 describes, or the router, which section 9.3 describes as the one skill that picks among the workflows instead. This text is neither. It delivers no workflow of its own; it adds rules to explore, which the generated skill <code>openspec-explore</code> delivers. OpenSpec does not generate it, and no documentation names such a text as a means of customization. This chapter therefore calls it the project's own text.</p>
+<p>The project's own text holds what the paragraph only names: when to write, how the topic of a file is chosen, what a new session does first, and what the file contains. The file has the same sections every time.</p>
+<pre><code class="language-markdown"># Explore log: &lt;topic&gt;
+
+Last updated: &lt;YYYY-MM-DD&gt;
+
+## Topic
+
+## Current state
+
+## Confirmed decisions
+
+## Open questions
+
+## Rejected options
+
+## Next step
+</code></pre>
+<p>The text also says how the write is handed to a second agent in each coding tool the project uses. Those lines name the tools and are left out here.</p>
+<h2>18.4 The log, and the read its first version lacked</h2>
+<p>Each rule of the log answers one way in which a resumed session could start from the wrong state.</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>What it prevents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One file per topic, under <code>openspec/.explore/</code> and outside <code>openspec/changes/</code></td>
+<td>A log read as a change: in a run, <code>openspec list</code> did not show it.</td>
+</tr>
+<tr>
+<td>A topic suffix chosen at the first checkpoint and kept for the session; a new file only after the developer agrees</td>
+<td>One topic's log overwritten by another's.</td>
+</tr>
+<tr>
+<td>The whole file replaced at each write, never appended to</td>
+<td>A file that keeps decisions which were later reversed.</td>
+</tr>
+<tr>
+<td>A write at a checkpoint only: a decision confirmed, an open question opened or closed, a change of direction, the end of the session, or the developer's request</td>
+<td>A write after every turn, which costs time and races the conversation.</td>
+</tr>
+<tr>
+<td>The write handed to a second agent</td>
+<td>The conversation stopping for a file. Whether it waits for the write depends on the coding tool.</td>
+</tr>
+<tr>
+<td>The log write the one write explore makes without asking</td>
+<td>A yes or no at every checkpoint, which the generated skill would otherwise require.</td>
+</tr>
+<tr>
+<td>The standalone propose workflow removes the matching log; explore's own capture leaves it</td>
+<td>A log that outlives the change it led to, or one removed while explore still needs it.</td>
+</tr>
+</tbody>
+</table>
+<p>The first version had every rule of the table and no rule for reading. It said when to write and how, and nowhere that a new session should look at what was already there. Its own checks passed, and it validated. Reading the rules against the use case, before the change was archived, showed the gap: a new session that chose the same suffix would replace the earlier state with its own at its first checkpoint, and a session that chose another would leave two logs for one topic. Either way, the case the customization was made for was the case it failed. The rule that closed it says that a new session lists <code>openspec/.explore/</code>, reads the log that matches its topic, and starts from that state before its first checkpoint. In a later run, a new session read a log seeded with a confirmed decision and wrote one that kept it.</p>
+<p>A hook of the coding tool that runs when a session starts was considered as a way to make the read certain, and rejected. It runs before the developer has said what the session is about, so it cannot know which log matches, and it would have needed one implementation for each coding tool.</p>
+<h2>18.5 What survives an update, and on what grounds</h2>
+<p><code>openspec update</code> rewrites the files it generates and leaves the rest. In the scratch project, created with <code>openspec init --scope project</code>, three things were changed by hand before the update: a line was added to the generated explore skill, a folder of the project's own was added to the skills folder, and a <code>context</code> entry was added to <code>openspec/config.yaml</code>. After the update, the line in the generated skill was gone, and the folder and the entry were as they had been.</p>
+<p>That is why the customization was built from those two files and not from an edit to the generated skill. How far it can be relied on differs for each part.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What it rests on</th>
+<th>What a later release could change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The <code>context</code> entry, and that it is returned with every instruction</td>
+<td>The documentation, and the configuration being the project's file</td>
+<td>Nothing that the documentation does not announce.</td>
+</tr>
+<tr>
+<td>That explore reads <code>context</code></td>
+<td>The text of the generated explore skill</td>
+<td>The skill is rewritten at every update, and a new text may read the configuration differently or not at all.</td>
+</tr>
+<tr>
+<td>That <code>update</code> leaves a folder of the project's own in the skills folder</td>
+<td>One run, on one release</td>
+<td>Nothing promises it. The documentation says nothing about files that <code>update</code> does not manage.</td>
+</tr>
+</tbody>
+</table>
+<p>Only the first row is a promise. The other two are behaviour, and behaviour is checked again after each update rather than assumed. The project has a check program of its own for that, outside OpenSpec, which confirms after an update that the text is in place, that <code>context</code> still names the log's path and that the log's folder is still ignored by git. It confirms that the parts exist, which is the form of section 13.8, and not that explore still reads them.</p>
+<h2>18.6 What it costs, and where it stops</h2>
+<p>The customization has costs that no check reports. The <code>context</code> paragraph is returned with every instruction, so it is read when a proposal, a design or a task list is written, and at every apply and archive, where it has nothing to do. It also says again part of what the project's text says, so the same rule is written twice and the two can drift apart, which nothing would report. Whether the agent reads the log at the start of a new session depends on the model following the text, and a run shows that it did once, not that it always will.</p>
+<p>It stops at one person. The log is ignored by git, so it exists only in one working copy, and another person on another machine never sees it. Two people exploring one topic in the same working copy would each replace the whole file. An exploration shared between people would need a log under version control, a rule for who commits it and when, and a way to merge two states of one topic, and the customization was kept to one person rather than take those on.</p>
+<p>A need that no documented means meets can be met by pairing the one documented channel that reaches the workflow, the configuration's <code>context</code>, with a text of the project's own, and the pair survives an update because the update rewrites only what it generated. It survives only as far as its grounds go. What the documentation states holds; that explore reads the configuration and that the update leaves a foreign folder alone is behaviour, to be checked again at every update, and no check of the project's or of OpenSpec's says whether the customization still meets its use case. That was shown once already, when every check passed on a version that did not read its own log, and only trying the use case against the rules found it.</p>
+<h1 class="chapter" id="ch19">19. What the Book Describes, and What It Leaves Open</h1>
+<p>The book has followed one tool from its conventions to the commands that no workflow calls, and to a customization that goes beyond what it documents. This last chapter says what kind of book that makes it, what it found, and which questions it leaves for the reader to take further. It adds nothing about the tool that an earlier chapter did not establish.</p>
+<h2>19.1 What kind of book this is</h2>
 <p>The first two chapters are about the method, not the tool. Chapter 1 argued that work done with a model needs a record that outlives the conversation, and that the record has a cost that has to be earned. Chapter 2 named the cornerstones such a record must satisfy. OpenSpec appeared there as one implementation, and section 1.6 said that it is replaceable in the argument.</p>
 <p>From chapter 3 on, the book is a technical description of one tool, OpenSpec, as one release of it behaves. It describes what the tool writes, what it reads, what it checks and what it leaves to the developer, and it describes it in the order a change meets it.</p>
 <table>
@@ -4702,13 +4867,17 @@ Change 'refuse-without-exact-change' is valid
 <td>15 to 17</td>
 <td>The five workflows outside the table, the two comparisons no check makes, and the commands no workflow calls.</td>
 </tr>
+<tr>
+<td>18</td>
+<td>A customization that no documented means carries, and on what it rests through an update.</td>
+</tr>
 </tbody>
 </table>
 <p>It is not a manual of every option the tool has. Nor is it a guide to practice. It says how the tool behaves when a developer uses it, and not how a team should organize its work around it.</p>
-<h2>18.2 The one finding</h2>
+<h2>19.2 The one finding</h2>
 <p>Chapter after chapter reached the same place. <code>validate</code> checks the form of a delta and the main specifications, and not whether the behaviour is the right one. The tasks are counted and not read, so a ticked box is a claim. No check opens the proposal or the design. The planning workflows are visible to the program only as files that exist. A customization is confirmed as well formed, and its effect is not. No check compares two changes with each other or a scenario with the code. The commands that no workflow calls read, check, connect and maintain, and none of them judges a change.</p>
 <p>That is one finding, seen from every side: the program checks form and counts, and the developer judges content. Chapter 9 gave it the shape of a division of work, in which the agent writes, the program reports and checks, and the developer decides and reviews. Chapter 3 gave it its reason: human control is the one cornerstone the conventions cannot carry, because a tool can hold a decision and cannot make one. Everything the book said about reviewing an artifact, a workflow or a command is an application of that division to one part of the tool.</p>
-<h2>18.3 What the book leaves open</h2>
+<h2>19.3 What the book leaves open</h2>
 <p>The questions below follow from what the book showed. Each names the chapter whose finding it extends, and none is answered here, because the book has no evidence to answer it with.</p>
 <h3>Large projects</h3>
 <ul>
@@ -4729,7 +4898,7 @@ Change 'refuse-without-exact-change' is valid
 <h3>Comparisons</h3>
 <ul>
 <li><strong>Would another spec-driven tool behave differently?</strong> Section 1.6 said that another tool may use different names, different artifacts and a different workflow, and chapter 3 that a different tool could arrange the same material and still serve the same principles. The book describes how OpenSpec divides the work between the agent, the program and the developer, and it does not show how another tool divides it.</li>
-<li><strong>Would another spec-driven tool check more?</strong> The book compares OpenSpec with nothing. The finding of section 18.2 is a finding about the release the book describes, and whether another tool closes any part of it is open.</li>
+<li><strong>Would another spec-driven tool check more?</strong> The book compares OpenSpec with nothing. The finding of section 19.2 is a finding about the release the book describes, and whether another tool closes any part of it is open.</li>
 </ul>
 <p>None of these questions is a defect found in the tool. Where OpenSpec has a mechanism for one of them, as it has stores for shared specifications, the book has described the mechanism. What it has not done is use the mechanism where many people, many changes and many months meet, and that is where these questions are decided.</p>
 <p>The book has shown, for one release, what OpenSpec writes, what it checks and what it leaves to the developer, and the answer was the same in every chapter: the program checks form and counts, and the content is the developer's to judge. At that scale the book does not say what happens, and it hands the reader the questions that follow from its finding instead: who reads, who owns, what is shared, and what is checked. The tool will not answer them, because each turns on a reading of content, and that reading is the part of the work that stays with the developer.</p>
