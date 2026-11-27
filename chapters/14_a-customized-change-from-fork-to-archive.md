@@ -1,14 +1,14 @@
 # 14. A Customized Change, from Fork to Archive
 
-The previous chapter said what can be customized, and what the tool checks for each kind of customization. This chapter shows it in practice. It uses the vending machine's second change, `refuse-without-exact-change`, which chapter 4 quotes in full. The chapter makes this change again under a schema of its own, `with-trace`. The schema adds one artifact, a trace, between the design and the tasks. The chapter shows every file that the customization adds or changes. It also shows the console input and the main output of each step. The proposal, the delta, the design and the tasks of the change are chapter 4's. This chapter points to them and does not repeat them. The table of section 13.6 lists the four needs of the example and the place where each need is met.
+The previous chapter said what can be customized and what the tool checks of each kind. This chapter shows it. It takes the vending machine's second change, `refuse-without-exact-change`, which chapter 4 quotes in full, and makes it again under a schema of its own, `with-trace`. The schema adds one artifact, a trace, between the design and the tasks. Every file that the customization adds or changes is shown, and so is the console input and the main output of each step. The proposal, the delta, the design and the tasks of the change are chapter 4's, and are pointed at and not repeated. The four needs of the example and the place where each is made are in the table of section 13.6.
 
-The walkthrough ran on OpenSpec 2.2.0 in a scratch project on 26 November 2026. The scratch project starts from the machine's own configuration and from a main specification that holds the first change's result. This chapter is the only one in the book that shows console blocks. Its claims are what the program printed, and a reader can check them only by seeing that output. A line that begins with `$ ` is input, and the lines after it are the program's output. The project's folder is written as `.`, and the program's own install folder as `<package>`. A line of three dots marks output that is cut. No block shows the work of an agent. The files were written by hand in the scratch project.
+The walkthrough ran in a scratch project on 26 November 2026, which starts from the machine's own configuration and a main specification that holds the first change's result. This chapter is the only one of the book that shows console blocks, because its claims are what the program printed and a reader can only check them by seeing it. A line that begins with `$ ` is input, and what follows is the program's output. The project's folder is written as `.`, the program's own install folder as `<package>`, and a line of three dots marks output that is cut. No block shows the work of an agent. The files were written by hand in the scratch project.
 
 ## 14.1 Preparing the harness
 
-The harness is prepared in four steps: a fork, a schema that differs from it, a template, and a configuration that names the fork. After each step, the program is asked what it now knows.
+The harness is prepared in four steps: a fork, a schema that differs from it, a template, and a configuration that names the fork. After each the program is asked what it now knows.
 
-The scratch project holds the machine's own `config.yaml`, which names `spec-driven`. It also holds a main specification of `purchase` with the first change's result. So the project is the example's second change, waiting to be made. The first of the four steps is the fork. It copies the package's `spec-driven` into the project under a new name.
+The scratch project holds the machine's own `config.yaml`, which names `spec-driven`, and a main specification of `purchase` that holds the first change's result, so the project is the example's second change waiting to be made. The first of the four steps is the fork. It copies the package's `spec-driven` into the project under a new name.
 
 ```
 $ openspec schema fork spec-driven with-trace
@@ -23,7 +23,7 @@ You can now customize the schema at:
   ./openspec/schemas/with-trace/schema.yaml
 ```
 
-`openspec schema which` says where a schema comes from. With `--all`, it lists the schemas that the project can reach. The fork is a project schema, and `spec-driven` is still the package's schema.
+`openspec schema which` says where a schema comes from, and with `--all` it lists what the project can reach. The fork is a project schema, and `spec-driven` is still the package's.
 
 ```
 $ openspec schema which with-trace
@@ -41,7 +41,7 @@ Package schemas:
   spec-driven
 ```
 
-The second step is to edit `schema.yaml` in the new folder. The file is the package's default of 273 lines, so the chapter shows it as the difference from the fork. The diff has four changes. The description says what the fork is. A `trace` artifact is added after the design, and it requires the specs and the design. The tasks gain `trace` in their `requires`. The apply block gains two lines. The lines of the default schema that the diff does not show are unchanged.
+The second step is the edit of `schema.yaml` in the new folder. The file is the package's default of 273 lines, so it is shown as the difference from the fork. The diff has four changes. The description says what the fork is. A `trace` artifact is added after the design, requiring the specs and the design. The tasks gain `trace` in their `requires`. The apply block gains two lines. The lines of the default schema that the diff does not show are unchanged.
 
 ```
 --- a/openspec/schemas/with-trace/schema.yaml
@@ -93,7 +93,7 @@ The second step is to edit `schema.yaml` in the new folder. The file is the pack
 +    marked not satisfied.
 ```
 
-The `requires` of the trace puts it between the design and the tasks. The `requires` of the tasks makes it mandatory. The two lines of the apply block are the third of the example's four needs. The third step is the template that the trace's `template: trace.md` names. It is a new file, `templates/trace.md`, in the same folder. The block below shows the whole file.
+The `requires` of the trace is what puts it between the design and the tasks, and the `requires` of the tasks is what makes it mandatory. The two lines of the apply block are the third of the example's four needs. The third step is the template that the trace's `template: trace.md` names, a new file, `templates/trace.md`, in the same folder. It is the whole file.
 
 ```
 ## Trace
@@ -107,7 +107,7 @@ The `requires` of the trace puts it between the design and the tasks. The `requi
 | <!-- scenario name --> | <!-- decision, or none --> | <!-- yes or no --> |
 ```
 
-The fourth step is `openspec/config.yaml`. The configuration needs three changes. It names the fork as the default schema. It gains a rule for the design, which is the example's second need. It also gains a line of archive guidance, which is the fourth need. The machine's own context and its rule for the tasks stay as they were.
+The fourth step is `openspec/config.yaml`. The configuration needs three changes. It names the fork as the default schema. It gains a rule for the design, which is the example's second need. And it gains a line of archive guidance, the fourth. The machine's own context and its rule for the tasks stay as they were.
 
 ```
 --- a/openspec/config.yaml
@@ -134,7 +134,7 @@ The fourth step is `openspec/config.yaml`. The configuration needs three changes
 +      - The archive summary says whether trace.md was read before the merge.
 ```
 
-Then the program is asked whether the schema is well formed. Section 13.5 says what this check covers: the syntax, the template files, the ids and the cycles.
+Then the program is asked whether the schema is well formed. This is the check that section 13.5 says it makes: the syntax, the template files, the ids and the cycles.
 
 ```
 $ openspec schema validate with-trace
@@ -142,11 +142,11 @@ Note: Schema commands are experimental and may change.
 ✓ Schema 'with-trace' is valid
 ```
 
-The answer says that the schema is valid. It says nothing about the instruction of the trace, and that instruction is the new part that matters.
+The answer says the schema is valid. It says nothing about the instruction of the trace, which is the new part that matters.
 
-## 14.2 A new change uses the new default schema
+## 14.2 A new change takes the new default
 
-A new change needs no flag, because the configuration now names the fork. The program says which schema it used. It also writes that schema into the change's own file.
+A new change needs no flag, because the configuration now names the fork. The program says which schema it used, and writes it into the change's own file.
 
 ```
 $ openspec new change refuse-without-exact-change
@@ -156,14 +156,14 @@ Schema: with-trace
 Next: openspec status --change refuse-without-exact-change
 ```
 
-So far, the change's folder holds one file, `.openspec.yaml`. From now on, this file is the record that outranks the configuration's default (section 13.4).
+The change's folder holds one file so far, `.openspec.yaml`, and it is the record that outranks the configuration's default from now on (section 13.4).
 
 ```
 schema: with-trace
 created: 2026-11-26
 ```
 
-`openspec status` lists the artifacts and what blocks each one. There are five artifacts, not four. The trace is blocked until both the specs and the design exist.
+`openspec status` lists the artifacts and what blocks each. There are five, not four, and the trace is blocked until the specs and the design both exist.
 
 ```
 $ openspec status --change refuse-without-exact-change
@@ -182,13 +182,13 @@ Progress: 0/5 artifacts complete
 Next: openspec instructions proposal --change "refuse-without-exact-change" --json
 ```
 
-The order of the first three artifacts is the one that chapters 3 and 4 gave. The customization changed the end. The tasks waited for the specs and the design, and now they wait for the trace as well.
+The order of the first three artifacts is as chapters 3 and 4 gave it. What the customization changed is the end: the tasks, which waited for the specs and the design, now wait for the trace as well.
 
 ## 14.3 What the agent is told
 
-The schema and the configuration decide what the agent is told when it asks for an artifact or an operation. The program shows this as JSON. The three commands below are the ones whose output carries the customization. The output is long, so each block is cut to the field that the customization put there.
+The schema and the configuration decide what the agent is told when it asks for an artifact or an operation. The program shows it as JSON, and the three commands below are the ones that carry the customization. The output is long, and each block is cut to the field that the customization put there.
 
-The design's instruction is the schema's. The configuration's context, rules and template are each in a field of their own. The rule for the design is the one that the fourth step of section 14.1 wrote.
+The design's instruction is the schema's, with the configuration's context, rules and template each in a field of its own. The rule for the design is the one the fourth step of section 14.1 wrote.
 
 ```
 $ openspec instructions design --change refuse-without-exact-change --json
@@ -201,7 +201,7 @@ $ openspec instructions design --change refuse-without-exact-change --json
 }
 ```
 
-The archive's guidance is a field of its own. It is not a rule, as section 13.3 said.
+The archive's guidance is a field of its own and is not a rule, as section 13.3 said.
 
 ```
 $ openspec instructions archive --change refuse-without-exact-change --json
@@ -214,11 +214,11 @@ $ openspec instructions archive --change refuse-without-exact-change --json
 }
 ```
 
-The apply instruction is the schema's. It appears in the output once the change is ready, and section 14.6 reaches that point. What it says is the two lines that the diff added. What the program prints is what the agent is told. The program does not show whether an agent follows it.
+The apply instruction is the schema's. It appears in the output once the change is ready, which section 14.6 reaches, and what it says is the two lines that the diff added. What the program prints is what the agent is told. Whether an agent follows it is not something the program shows.
 
-## 14.4 The trace, the new file
+## 14.4 The trace is the new file
 
-The proposal, the delta, the design and the tasks of the change are chapter 4's. They are written as chapter 4 quotes them. Once the proposal exists, `specs` and `design` are ready, and the trace waits for both. After the design, the program says that the trace is next. It also says that the tasks wait only for the trace.
+The proposal, the delta, the design and the tasks of the change are chapter 4's, and they are written as it quotes them. Once the proposal exists, `specs` and `design` are ready, and the trace waits for both. After the design the program says that the trace is next, and that the tasks wait for it alone.
 
 ```
 $ openspec status --change refuse-without-exact-change
@@ -237,7 +237,7 @@ Progress: 3/5 artifacts complete
 Next: openspec instructions trace --change "refuse-without-exact-change" --json
 ```
 
-The trace is written from the design's Findings, where chapter 4 quotes Traces B, C and D. No archive holds this file. So it is written for this chapter, as the previous chapter's example was, and it is not the output of an agent run. Its three rows are the three scenarios of the delta. Each row names the decision in the design that satisfies the scenario.
+The trace is written from the design's Findings, where chapter 4 quotes Traces B, C and D. No archive holds this file, so it is written for the chapter, as the previous chapter's example was, and it is not the output of an agent run. Its three rows are the three scenarios of the delta, each with the decision in the design that satisfies it.
 
 ```
 ## Trace
@@ -249,7 +249,7 @@ The trace is written from the design's Findings, where chapter 4 quotes Traces B
 | Stock cannot make the change | If the change is not exact, refuse the purchase, release no product, and return the amount inserted (Trace B) | yes |
 ```
 
-With the trace written, the tasks are ready. When the tasks are written, the program reports all five artifacts.
+With the trace written the tasks are ready, and when they are written the program reports all five artifacts.
 
 ```
 $ openspec status --change refuse-without-exact-change
@@ -269,11 +269,11 @@ All planning artifacts complete!
 Next: openspec instructions apply --change "refuse-without-exact-change" --json
 ```
 
-## 14.5 What the trace would have shown about the first design
+## 14.5 What the trace would have shown the first design
 
-The trace was added because of what the first version failed to do. Chapter 4 told that story. The design of `give-exact-change` set the stock case aside as a non-goal. The change passed validation and every task. A walkthrough written afterwards found the case undecided. The question here is where the trace would have shown the problem.
+The trace was added because of what the first version failed to do. Chapter 4 told it: the design of `give-exact-change` set the stock case aside as a non-goal, the change passed validation and every task, and a walkthrough written afterwards found the case undecided. The question here is where the trace would have shown it.
 
-The file below is a trace of the first design, against the three scenarios of the second change. It is hypothetical, and it is written for this chapter. The machine did not write it. The first change did not have the scenario that the trace lists last. The first two rows follow the first design's own Findings, and the third row follows its Non-Goals.
+A trace of the first design, against the three scenarios of the second change, is the file below. It is hypothetical, and it is written for this chapter. The machine did not write it, and the first change did not have the scenario it lists last. The first two rows follow the first design's own Findings, and the third follows its Non-Goals.
 
 ```
 ## Trace
@@ -285,13 +285,13 @@ The file below is a trace of the first design, against the three scenarios of th
 | Stock cannot make the change | none | no |
 ```
 
-The third row has no decision. The trace's instruction tells whoever writes it to say so, and not to edit the design to hide the gap. The configuration's rule would have found the same row from the other side. The first design states exactly that case as a non-goal, while a scenario now tests it.
+The third row has no decision, and the trace's instruction tells whoever writes it to say so and not to edit the design to hide the gap. The configuration's rule would have met the same row from the other side: the first design states exactly that case as a non-goal, while a scenario now tests it.
 
-This is a limit as well as a finding. The row exists because the scenario exists. The first change had no scenario for the stock case. So a trace of it would have had two rows, and both would have read yes. A trace finds a scenario that has no decision. It cannot find a scenario that nobody wrote. That is the coverage review of chapter 6, and the trace does not replace it. The trace does not prevent the failure either. It puts the failure where the review is cheapest: after the design and before the first task.
+This is a limit as well as a finding. The row exists because the scenario exists. The first change had no scenario for the stock case, so a trace of it would have had two rows and both would have read yes. A trace finds a scenario that has no decision, and cannot find a scenario that nobody wrote. That is the coverage review of chapter 6, and the trace does not replace it. The trace does not prevent the failure either. It puts the failure where the review is cheapest, after the design and before the first task.
 
 ## 14.6 Apply, validate and archive
 
-Apply reads the tasks. While the tasks are unticked, the program returns the schema's instruction. The boxes of chapter 4's tasks are ticked in the archive. So the scratch project's copy has them unticked, and it ticks them after this command, as an apply would. The output is cut to the fields that matter.
+Apply reads the tasks, and with them unticked the program returns the schema's instruction. The boxes of chapter 4's tasks are ticked in the archive, so the scratch project's copy has them unticked, and ticks them after this command, as an apply would. The output is cut to the fields that matter.
 
 ```
 $ openspec instructions apply --change refuse-without-exact-change --json
@@ -303,14 +303,14 @@ $ openspec instructions apply --change refuse-without-exact-change --json
 }
 ```
 
-The last two lines are the diff's. The program returns them, and it counts nothing about whether they are followed. With the boxes ticked, `validate` passes the change.
+The last two lines are the diff's. The program returns them and counts nothing of whether they are kept. With the boxes ticked, `validate` passes the change.
 
 ```
 $ openspec validate refuse-without-exact-change --strict
 Change 'refuse-without-exact-change' is valid
 ```
 
-The command checks the structure of the specifications. It does not open the trace, and a trace that is a row of dashes passes it. The next block is a run and not advice. The trace is replaced by a one-row placeholder, and `status` and `validate` are run again.
+The command checks the structure of the specifications. It does not open the trace, and a trace that is a row of dashes passes it. The next block is a run and not advice: the trace is replaced by a one-row placeholder, and `status` and `validate` are run again.
 
 ```
 ## Trace
@@ -332,7 +332,7 @@ $ openspec validate refuse-without-exact-change --strict
 Change 'refuse-without-exact-change' is valid
 ```
 
-The program counts an artifact by its file. It counts the placeholder like the table of three rows, because the file is there. Then the original trace is restored, and archive is run.
+The program counts an artifact by its file. The placeholder is counted like the table of three rows, because the file is there. The original trace is restored and archive is run.
 
 ```
 $ openspec archive refuse-without-exact-change --yes
@@ -347,7 +347,7 @@ Specs updated successfully.
 Change 'refuse-without-exact-change' archived as '2026-11-26-refuse-without-exact-change'.
 ```
 
-The command moves the whole folder, as chapter 12 said. The archived folder holds the trace beside the design.
+The command moves the whole folder, as chapter 12 said, and the archived folder holds the trace beside the design.
 
 ```
 $ ls openspec/changes/archive/2026-11-26-refuse-without-exact-change/
@@ -358,13 +358,13 @@ tasks.md
 trace.md
 ```
 
-The guidance for the archive asked the summary to say whether the trace was read. The `archive` command writes no summary, and the output above has none. Such a summary would be written in the archive workflow, which the agent runs. Nothing checks that the summary says it.
+The guidance for the archive asked the summary to say whether the trace was read. The `archive` command writes no summary, and the output above has none. The archive workflow, which the agent runs, is where such a summary would be written, and nothing checks that it says it.
 
 ## 14.7 What the customization costs
 
-The customization costs a fork, and one more file for every change. The fork is a copy of `spec-driven` as it was on the day it was made. Nothing flows from the package into it. So the project keeps it up to date by hand, or does not keep it up to date. Every change carries one more artifact. That is one more file to write after the design, and to read before the first task.
+The customization costs a fork and a file for every change. The fork is a copy of `spec-driven` as it was on the day it was made, and the project keeps it up to date by hand, or does not, because nothing flows from the package into it. Every change carries one more artifact, which is one more file to write after the design and to read before the first task.
 
-What the tool counts is not what was reviewed. A design edited after the trace leaves the trace as it was. The next line is appended to the design of the scratch change. It is a decision that the trace does not mention. Then `status` and `validate` are asked what they report.
+What the tool counts is not what was reviewed. A design edited after the trace leaves the trace as it was. The next line is appended to the design of the scratch change, a decision that the trace does not mention, and `status` and `validate` are asked what they think.
 
 ```
 **Decision**: refuse every purchase for which the stock holds fewer than three coins.
@@ -382,6 +382,6 @@ $ openspec validate refuse-without-exact-change --strict
 Change 'refuse-without-exact-change' is valid
 ```
 
-Five of five, and valid, after a decision that the trace never traced. The trace is as good as the review that wrote it and the review that reads it. The program knows about neither review.
+Five of five, and valid, after a decision the trace never traced. The trace is as good as the review that wrote it and the review that reads it, and the program does not know either.
 
-A customized change is the default change with one more file. The program shows that the file exists, that the schema is well formed, and what each instruction says. It shows nothing about whether the trace is true, or whether it was read before the tasks. It also shows nothing about whether the summary at the archive said so. Those questions stay with the reviewer, as the previous chapter said of every customization.
+A customized change is the default change with one more file. The program shows that the file exists, that the schema is well formed, and what each instruction says. It shows nothing about whether the trace is true, whether it was read before the tasks, or whether the summary at the archive said so, and those stay with the reviewer, as the previous chapter said of every customization.
