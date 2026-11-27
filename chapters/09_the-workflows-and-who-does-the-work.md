@@ -33,11 +33,11 @@ The table says what each of the three parties does and what it leaves to the oth
 | The program | Reports the state and the counts, checks the format, and, as the commands `validate` and `archive`, checks a delta, can merge it and moves a change into the archive. | The reading of the project and the writing of its files, which the agent does, and what is wanted, which the developer says. |
 | The developer | Decides what is wanted, confirms what a skill asks to have confirmed, and reviews the result. | The writing of the files, which the agent does, and the checks of format, which the program does. |
 
-The same division holds in every workflow, with a different weight. It is chapter 3's pattern, and each workflow weighs its three parties differently. In explore the agent writes nothing until the developer confirms that it may, so the developer decides what is written, if anything. In propose the agent writes every planning artifact. In validate there is no skill, and the program does the work. In archive the work can be the program's or the agent's. The chapters that follow ask, for each workflow, who does what.
+The same division holds in every workflow; it is chapter 3's pattern, and each workflow weighs its three parties differently. In explore the agent writes nothing until the developer confirms that it may, so the developer decides what is written, if anything. In propose the agent writes every planning artifact. In validate there is no skill, and the program does the work. In archive the work can be the program's or the agent's. The chapters that follow ask, for each workflow, who does what.
 
 ## 9.3 Which workflows are installed, and what they are called
 
-No project has all twelve workflows unless its profile asks for them. OpenSpec installs the workflows that a setting called the profile asks for. The core profile installs six workflows:
+OpenSpec installs the workflows that a setting called the profile asks for, so no project has all twelve unless its profile names them. The core profile installs six:
 
 - propose: for when the developer can already say what is wanted.
 - explore: for when something has to be thought through, before a change or during one.
@@ -46,7 +46,7 @@ No project has all twelve workflows unless its profile asks for them. OpenSpec i
 - sync: for when the main specifications should show a change before it is archived.
 - archive: for when the work is finished and the change is to be closed.
 
-Continue is not one of them; a profile that names it installs it, and the book examines it alongside the six. The profile is a setting of the machine, not of one project. The command `openspec update` rewrites the installed skills so that they match it. Every profile also installs one skill that is not a workflow: `openspec`, the router. `openspec config list` does not show it, because no profile chooses it. A workflow whose skill is not installed cannot be called by its name.
+Continue is not one of them; a profile that names it installs it. The profile is a setting of the machine, not of one project. The command `openspec update` rewrites the installed skills so that they match it. Every profile also installs one skill that is not a workflow: `openspec`, the router. `openspec config list` does not show it, because no profile chooses it. A workflow whose skill is not installed cannot be called by its name.
 
 The router changes who picks the workflow. Its description tells the agent to reach for it when the developer asks for OpenSpec work without naming a skill, and its text then leaves the agent three moves: answer a question, hand the request to one skill, or run several skills in order. A table in the skill maps requests to the twelve workflow skills. When a request fits more than one row, the agent asks which is meant; when it runs several skills, it finishes each before starting the next, and every skill's own stops still hold. The agent picks the workflow from the table, and the program checks nothing about that choice. The developer can still name a skill directly; the router is written for the request that names none. Its table also covers the workflows whose skill is not installed. For those, the router tells the agent to say so, to point to `openspec config profile` and `openspec update`, and then to follow a shorter path from one of its reference files, which chapter 15 describes.
 
@@ -62,7 +62,7 @@ A workflow is therefore written in plain text, and a command or a skill in code 
 
 What the next chapters say about a skill comes from reading it, and what they say about a command comes from running it. Each time the book moved to a newer release, every run was repeated, and the results stayed the same except for the number of skills a profile installs, for the reason section 9.3 gives: the router. A skill is a text, and one agent can follow the same text differently from another, so the developer's review covers that difference.
 
-The next three chapters take the workflows in the order of the table, in three groups: those that write the plan, those that do the work and check it, and those that bring the project's record up to date. Each begins with the table of section 9.1, with its own rows in bold, and asks the same four questions of every workflow:
+The next three chapters take the workflows in the order of the table, in three groups: those that write the plan, those that do the work and check it, and those that bring the project's record up to date. Each asks the same four questions of every workflow:
 
 1. Who does the work?
 2. What does it read and write, and what can stop it?

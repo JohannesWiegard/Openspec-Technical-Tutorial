@@ -6,25 +6,18 @@ The table shows the files of a change and the paths of its specifications. The r
 
 | Item | File | What it says | Discussed in |
 |---|---|---|---|
-| Change | `openspec/changes/<change>/` | The folder of one change. Archive moves it into the archive. | Chapter 4 |
+| Change | `openspec/changes/<change>/` | The folder of one change. | Chapter 4 |
 | Proposal | `proposal.md` | Why the change exists and what it changes. | Chapters 4 and 5 |
 | Capability | `specs/<capability>/` | The folder for one area of behaviour, such as `purchase`. | Chapters 4 and 6 |
 | Specification | `specs/<capability>/spec.md` | What one change adds, modifies or removes. | Chapters 4 and 6 |
-| Main specification | `openspec/specs/<capability>/spec.md` | The system as it stands. Archive writes it. | Chapters 4 and 6 |
+| Main specification | `openspec/specs/<capability>/spec.md` | The system as it stands. | Chapters 4 and 6 |
 | Design | `design.md` | How the work is done. | Chapters 4 and 7 |
 | **Tasks** | **`tasks.md`** | **The checks that turn the design into work.** | **Chapters 4 and 8** |
 | Schema marker | `.openspec.yaml` | The schema the change follows, and `skip_specs` when it has no deltas. | Chapter 4 |
 
-The table lists the parts of `tasks.md`. The parts this chapter quotes or discusses are in bold.
-
-| Tasks | Description |
-|---|---|
-| **Group heading** | A numbered heading that groups related tasks. |
-| **Task** | A checkbox with a number and a description of the check. `[ ]` is open and `[x]` is done. |
-
 ## 8.1 Who writes the tasks
 
-The agent drafts the first version of `tasks.md` from the delta and the design, which are the two artifacts the tool lists as the tasks' dependencies. Before it writes, the instruction tells it to read the design's Open Questions and to resolve with the user any that would change what gets built, so that no unstated assumption is built into the list. It supplies the form of the template, a task for each decision that reads as sound, and a way of verifying each one. What it cannot supply is what the team can really verify, which evidence could fail, or what size of check fits one session. The developer's part is to ask of each task what would show that it had failed. Section 5.1 describes the same division for the proposal, and sections 6.1 and 7.1 describe it for the delta and the design. Chapter 2 gives the reason human control stays with the developer.
+The agent drafts the first version of `tasks.md` from the delta and the design. Before it writes, the instruction tells it to read the design's Open Questions and to resolve with the user any that would change what gets built, so that no unstated assumption is built into the list. It supplies the form of the template, a task for each decision that reads as sound, and a way of verifying each one. What it cannot supply is what the team can really verify, which evidence could fail, or what size of check fits one session. The developer's part is to ask of each task what would show that it had failed. Section 5.1 describes the same division for the proposal, and sections 6.1 and 7.1 describe it for the delta and the design. Chapter 2 gives the reason human control stays with the developer.
 
 In the `spec-driven` schema the tasks require both the delta and the design, so `openspec status` shows them as blocked until both exist, and the apply workflow requires the tasks. The instruction of the apply workflow tells the agent to work through the pending tasks and to mark each one complete as it goes. In the default schema the agent therefore writes the check and ticks it, and nothing records which of the two made it. A person is the only party who can tell the check from the tick, and the rest of this chapter is about how.
 
@@ -51,7 +44,7 @@ The file is `tasks.md` in the change `give-exact-change`, and it is shown in ful
 - [x] 1.3 Run `openspec validate --strict`. **Verified by** the command passing.
 ```
 
-Its single group, "Check the first version", holds three tasks: two traces and a validation run. Each is one check, and each box is ticked. The numbers 1.1 to 1.3 are the author's, as the previous section said, and the tool does not read them.
+Its single group, "Check the first version", holds three tasks: two traces and a validation run. Each is one check. The numbers 1.1 to 1.3 are the author's, as the previous section said.
 
 The file is `tasks.md` in the change `refuse-without-exact-change`, and it is shown in full as archived:
 
@@ -74,7 +67,7 @@ Every box in both files is ticked, and the archive keeps them. A tick does not h
 
 ## 8.4 What the template leaves out
 
-The instruction for the tasks asks for two things that the template does not have. The first is a statement in each task of how it is verified. The instruction says that each task must state how to verify completion, with a test, a command, an observable behaviour or a delivered artifact, and that the statement goes in the task's own description. The template has two checkbox placeholders and no part for it. The example fixes its wording through a rule in its project configuration, which asks each task to state how it is verified, and `Verified by` is the example's wording of what the instruction already asks.
+The instruction for the tasks asks for two things that the template does not have. The first is a statement in each task of how it is verified. The instruction says that each task must state how to verify completion, with a test, a command, an observable behaviour or a delivered artifact, and that the statement goes in the task's own description. The template has two checkbox placeholders and no part for it. The example fixes the wording through a rule in its project configuration, and `Verified by` is the example's wording of what the instruction already asks.
 
 The file is `tasks.md` in the change `give-exact-change`, and its task 1.1 reads as archived:
 
@@ -82,7 +75,7 @@ The file is `tasks.md` in the change `give-exact-change`, and its task 1.1 reads
 - [x] 1.1 Trace the scenario "Change is given from stock" through the design by hand. **Verified by** the trace in the design's Findings, which matches the scenario.
 ```
 
-The evidence is a trace in the design's Findings, which matches the scenario. A reviewer opens the design, reads the trace and compares it with the scenario. The trace could have disagreed with the scenario, and the reviewer can see whether it did. Section 4.7 shows a trace of this kind.
+A reviewer opens the design, reads the trace and compares it with the scenario. The trace could have disagreed with the scenario, and the reviewer can see whether it did. Section 4.7 shows a trace of this kind.
 
 The file is `tasks.md` in the change `refuse-without-exact-change`, and its task 2.1 reads as archived:
 
@@ -90,9 +83,9 @@ The file is `tasks.md` in the change `refuse-without-exact-change`, and its task
 - [x] 2.1 Revise the design so that the change is worked out before release, and a change that is not exact is refused. **Verified by** the decisions in the design.
 ```
 
-The evidence is the decisions in the design. The decision is both what was done and the proof that it was done, so this evidence cannot show a failure of its own. The question a reviewer asks of any task is whether its evidence could have come out the other way. Task 2.2 of the same file, which traces all three scenarios through the revised design, is the task whose evidence can fail. The example shows both kinds side by side, as written.
+Here the decision is both what was done and the proof that it was done, so this evidence cannot show a failure of its own. The question a reviewer asks of any task is whether its evidence could have come out the other way. Task 2.2 of the same file, which traces all three scenarios through the revised design, is the task whose evidence can fail. The example shows both kinds side by side, as written.
 
-The example has three kinds of evidence. A reading, such as a trace in the design or a scenario in the delta, can be opened by someone who was not there. The work itself, such as the decisions of task 2.1, is the claim again. A command's result, as in the last task of each file, which runs `openspec validate --strict` and names the command passing, is recorded by the box and by the clause, and nowhere else unless the task says where. `validate`, run on a change that has not been archived, reads the delta and never the design or the tasks, as sections 7.2 and 4.5 say, so those two tasks are evidence about the delta and no more. Section 4.5 says what followed for the first change.
+The example has three kinds of evidence. A reading, such as a trace in the design or a scenario in the delta, can be opened by someone who was not there. The work itself, such as the decisions of task 2.1, is the claim again. A command's result, as in the last task of each file, which runs `openspec validate --strict` and names the command passing, is recorded by the box and by the clause, and nowhere else unless the task says where. Section 8.2 says what `validate` reads, so those two tasks are evidence about the delta and no more. Section 4.5 says what followed for the first change.
 
 The instruction's second addition is for steps that need the archive. It asks that the tracked tasks be work that can be completed before the archive, and that any step which waits for the archive be a plain bullet under an optional `## Workflow follow-up` section, where the tool does not count it. The reason shows in what `archive` does with an open box: it asks whether to continue. A box for the archive itself could not be ticked before the archive ran, so it would be an open box at the moment the archive counts. The instruction names the section for use when it applies, and neither example file has one.
 
@@ -100,7 +93,7 @@ The instruction's second addition is for steps that need the archive. It asks th
 
 The tasks are reviewed twice. The first review is made after the design is reviewed and before apply begins, and it asks whether the checks are the right ones. The second is made when the boxes are ticked, and it reads each ticked box against the evidence its task names. The tool shows the count at both moments and checks neither review. The review has four passes. Intent asks whether the tasks check this change and not another. Coverage asks whether each decision of the design, and each trace it hands on, has a task that checks it, and whether each task checks something the design holds. Evidence asks whether each task's evidence could have come out the other way, and whether someone who was not there can open it. Order asks whether the tasks are small, ordered by dependency and grouped so that each group lands its own tests and documentation. Coverage and evidence matter most, because the tool counts boxes and sees neither.
 
-When every box is ticked, `instructions apply` reports the change as all done, and it tells the agent to review or verify the change as appropriate before archiving. The tool leaves the verification to a person. The count says how many boxes are ticked and does not say how many checks were made. The second review is the one the count cannot do: it reads each ticked box in the file its task names, and it finds the box whose evidence is absent.
+When every box is ticked, `instructions apply` reports the change as all done, and it tells the agent to review or verify the change as appropriate before archiving. The tool leaves the verification to a person, and the second review is the one the count cannot do: it finds the box whose evidence is absent.
 
 The table is one checklist, in the order the file is read. The column names use the artifact's name, which here is the tasks.
 
@@ -116,7 +109,7 @@ The table is one checklist, in the order the file is read. The column names use 
 | Workflow follow-up | A step that waits for the archive is a plain bullet and not a box | An archive step is written as a box, so the list cannot be finished before the archive it waits for |
 | Downstream | The count is complete because each task is ticked with its evidence, and the change can go to archive | The list reads complete because an open task was removed or reworded, or an open box is left for the archive to ask about |
 
-The table is a memory aid, and no part of the tool reads it. A row that passes records a person's judgement, not a machine's check. The rows on evidence, on the box and on what is downstream look beyond the file to the files its tasks name, and they are the ones that cannot be read from the tasks alone. A list whose count is complete and whose evidence cannot be opened is not finished. A task list is finished when each tick can be traced to its evidence, not when the count is complete.
+The table is a memory aid, and no part of the tool reads it. A row that passes records a person's judgment, not a machine's check. The rows on evidence, on the box and on what is downstream look beyond the file to the files its tasks name, and they are the ones that cannot be read from the tasks alone. A task list is finished when each tick can be traced to its evidence, not when the count is complete.
 
 ## 8.6 Changing the tasks after review
 
@@ -130,7 +123,7 @@ When the review finds a fault, two decisions follow: what the revision covers, a
 
 The archive keeps the tasks as they were, as section 5.9 says of the proposal, and the same reason applies here. The example shows the bottom row and not the middle one. The second change's tasks are a new list in a new change. Its task 1.2 traces the design of the first change, and the first change's list is untouched, with every box still ticked. The middle row, a list revised while boxes are ticked, has no case in the archive, for the reason chapter 5 gives: the second change was written after the first was archived, from a finding.
 
-A revision is made by editing the file or by asking the agent to change it, and the choice turns on whether the replacement is known. The developer edits when the sentence is already known. The developer asks the agent when the check has to be worked out from the design, or when several tasks have to move together. The table compares the two means on four points.
+A revision is made by editing the file or by asking the agent to change it, and the choice turns on whether the replacement is known. The table compares the two means on four points.
 
 | | The developer edits the file | The agent is asked to revise it |
 |---|---|---|
@@ -153,11 +146,11 @@ Both means end in the same reading. An edit is checked by its diff, which includ
 
 ## 8.7 What the tasks hand on
 
-The tasks are the one artifact that the next workflow reads, and the schema names them as the file that apply tracks. Three things follow them: the apply workflow, the `validate` command and the archive workflow. This section gives each one a paragraph, saying what it does with the tasks and one fact that a reader would not guess. Chapter 11 describes apply and the `validate` command and chapter 12 describes archive, each with its own review and update guidance.
+The tasks are the one artifact that the next workflow reads, and the schema names them as the file that apply tracks. Three things follow them: the apply workflow, the `validate` command and the archive workflow. This section gives each one a paragraph, saying what it does with the tasks and one fact that a reader would not guess.
 
-Apply is the workflow in which the boxes change. The agent works through the pending tasks and marks each one complete. `instructions apply` reports one of three states: blocked when there is no task to work on, ready when some are open, and all done when none is, which is the state in which it tells the agent to review or verify. The developer's part is the second review of section 8.5: to read the evidence and not the ticks.
+Apply is the workflow in which the boxes change. `instructions apply` reports one of three states: blocked when there is no task to work on, ready when some are open, and all done when none is. The developer's part is the second review of section 8.5: to read the evidence and not the ticks.
 
-The `validate` command, run on a change that has not been archived, reads the delta and never the tasks, as section 8.2 says, and the example's tasks run it as a check. `openspec validate --strict` fails on a warning, such as a requirement that says should where SHALL or MUST belongs, and `archive` does not: it blocks on errors, and a warning passes it without being shown. The main specification then fails the strict check for the same warning. A task that names "the command passing" is therefore evidence about whichever form the task names.
+The example's tasks run the `validate` command as a check. `openspec validate --strict` fails on a warning, such as a requirement that says should where SHALL or MUST belongs, and `archive` does not: it blocks on errors, and a warning passes it without being shown. The main specification then fails the strict check for the same warning. A task that names "the command passing" is therefore evidence about whichever form the task names.
 
 The `archive` command reads the tasks to count them. It prints the count, and when some boxes are open it asks whether to continue. The default answer is no, and a run with no one to answer is refused unless it is told to continue. The archive workflow reads the same count from `list` and asks the user to confirm before it goes on. A change with no `tasks.md`, or with no checkbox in it, raises no question about the tasks. The `archive` command refuses a delta it cannot merge and changes no file, and when it succeeds it moves the change into the archive under the date; the workflow stops before it moves the change if its merge fails. Sections 4.6 and 4.14 describe what that leaves in the main specification.
 

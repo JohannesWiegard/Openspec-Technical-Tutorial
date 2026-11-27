@@ -4,7 +4,7 @@ Chapters 9 to 12 took seven workflows apart and one command, and gave each a car
 
 ## 15.1 Five more workflows
 
-Chapter 9 tables seven workflows. The program holds a longer list, with twelve entries: propose, explore, new, continue, apply, update, ff, sync, archive, bulk-archive, verify and onboard.
+The program holds a longer list than chapter 9, with twelve entries: propose, explore, new, continue, apply, update, ff, sync, archive, bulk-archive, verify and onboard.
 
 A project whose profile names all twelve gets thirteen skills: one for each workflow, and the router. A scratch project showed this on 26 November 2026: `openspec init --scope project` with a global profile that listed all twelve installed thirteen skills in the project's skills folder. A profile that names the seven of chapter 9 gets eight. The table of chapter 9 is the table of those seven, and it is not wrong for being shorter than the program's list.
 
@@ -40,7 +40,7 @@ What fast-forward leaves out is what surrounds the loop: the clarifying of the r
 
 - Fast-forward passes no schema, so another one can be chosen only in the request.
 - It asks only when the context is critically unclear and otherwise prefers reasonable decisions. Propose asks about an ambiguity that would change the scope, the observable behaviour, the compatibility or the acceptance criteria, and tells the agent to record a minor assumption in the artifacts. The skill of fast-forward has no sentence that tells the agent to record one.
-- Propose opens with a paragraph that says the request authorises planning only and tells the agent to stop. Fast-forward has none. Both skills close with the same prompt, which calls the plan ready for review and offers to apply it when the developer asks.
+- Propose opens with a paragraph that says the request authorizes planning only and tells the agent to stop. Fast-forward has none. Both skills close with the same prompt, which calls the plan ready for review and offers to apply it when the developer asks.
 
 The skill is silent on the boundary. That is a difference in text, and not a defect found in a run.
 
@@ -76,7 +76,7 @@ It shows one table of all the changes with their artifacts, tasks, deltas and co
 
 The agent does the merging and the moving, and the program supplies the lists, the statuses and the counts. This is the path of chapter 12 in which the agent merges, run over several changes.
 
-The rule that settles a conflict asks for evidence in the code, so a project whose changes are prose has nothing for it to find. A reviewer should read how each conflict was settled and not take the table's word that it was. The developer chooses the changes, reads the table and gives the one confirmation, which is the only question the skill asks before it writes. What a collision between two changes is, and what to do before the second archive, is a question of its own, and this chapter does not answer it. Chapter 16 takes up both questions, this one and the one at the end of section 15.4.
+The rule that settles a conflict asks for evidence in the code, so a project whose changes are prose has nothing for it to find. A reviewer should read how each conflict was settled and not take the table's word that it was. The developer chooses the changes, reads the table and gives the one confirmation. What a collision between two changes is, and what to do before the second archive, is a question of its own, and this chapter does not answer it. Chapter 16 takes up both questions, this one and the one at the end of section 15.4.
 
 ## 15.6 Onboard
 
@@ -102,4 +102,4 @@ The cost of a wrong result differs by workflow:
 - A bulk-archive run that went wrong has moved folders and merged specifications, so the last row of the table of section 10.7 applies to each change it archived: the archive holds no revision, and the correction is a new change.
 - The same holds for onboard, whose code is corrected by the project's own means and whose change the archive keeps as it was. A developer who stopped onboard early has a change in flight that continue and apply can take up, and nothing to correct in the archive.
 
-The five workflows outside the table add no kind of file and no check that the program makes. They differ in how much is written or moved in one run and in how much the agent is told to ask: new writes no artifact, fast-forward writes every artifact with fewer questions and no stated boundary, verify writes nothing and reports, bulk-archive moves several changes after one question, and onboard writes a whole change and the code with it. The program sees only that files exist and tasks are counted, so what separates a good run from a bad one is the same in all five, which is the developer's reading of what was written or moved, who asked for it, and what it assumed. Of the five, only bulk-archive and onboard change the record of the project beyond a plan, and a developer chooses either by what the project will keep.
+The five workflows outside the table add no kind of file and no check that the program makes, and differ only in how much one run writes or moves and how much the agent is told to ask. The program sees only that files exist and tasks are counted, so what separates a good run from a bad one is the same in all five, which is the developer's reading of what was written or moved, who asked for it, and what it assumed. Of the five, only bulk-archive and onboard change the record of the project beyond a plan, and a developer chooses either by what the project will keep.

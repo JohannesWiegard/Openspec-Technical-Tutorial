@@ -1,6 +1,6 @@
 # 18. What the Book Describes, and What It Leaves Open
 
-The book has followed one tool from its conventions to the commands that no workflow calls. This last chapter says what kind of book that makes it, what it found, and which questions it leaves for the reader to take further. It adds nothing about the tool that an earlier chapter did not establish, and it answers none of the questions it names.
+The book has followed one tool from its conventions to the commands that no workflow calls. This last chapter says what kind of book that makes it, what it found, and which questions it leaves for the reader to take further. It adds nothing about the tool that an earlier chapter did not establish.
 
 ## 18.1 What kind of book this is
 
@@ -16,7 +16,7 @@ From chapter 3 on, the book is a technical description of one tool, OpenSpec, as
 | 13 and 14 | Customizing the harness, and one customized change from fork to archive. |
 | 15 to 17 | The five workflows outside the table, the two comparisons no check makes, and the commands no workflow calls. |
 
-It is not a manual of every option the tool has. Nor is it a guide to practice. It says how the tool behaves when a developer uses it, and not how a team should organise its work around it.
+It is not a manual of every option the tool has. Nor is it a guide to practice. It says how the tool behaves when a developer uses it, and not how a team should organize its work around it.
 
 ## 18.2 The one finding
 
@@ -32,7 +32,7 @@ The questions below follow from what the book showed. Each names the chapter who
 
 - **Where does a capability end?** The example has one capability, and section 5.5 showed how a proposal names the capability it changes. A system with dozens of them needs a rule for cutting behaviour into capabilities. The book has none to offer.
 - **Who reads two changes against each other?** Chapter 16 showed that no check compares two changes that are open at the same time, and that the comparison is a reading of the main specification after the second archive. With one writer that reading is a habit. With many changes in flight it is a duty that someone has to own, at a time the process has to fix. The book does not say who, or when.
-- **How is a specification shared?** Section 17.4 described stores: a repository of specifications that several code repositories can use, registered on each machine, never synchronised by OpenSpec, and marked as beta. It described the commands, not a practice. How a store is kept current, who may change it, and how a change to it is coordinated with the code it describes are not shown.
+- **How is a specification shared?** Section 17.4 described stores: a repository of specifications that several code repositories can use, registered on each machine, never synchronized by OpenSpec, and marked as beta. It described the commands, not a practice. How a store is kept current, who may change it, and how a change to it is coordinated with the code it describes are not shown.
 - **Who owns the record?** Chapter 5 said that a proposal is drafted by an agent and owned by a person. Sections 1.7 and 2.7 said that a team must settle what earns a record. The book has one owner throughout, and it does not show how a team settles either question.
 - **How does a change meet a branch and a review?** The book never relates a change folder to a branch, a pull request or a code review, beyond the remark in section 3.4 that an abandoned change leaves no half-finished branch behind. Whether a change lives in one branch, who approves its artifacts and in which order they are reviewed against the code are not described.
 - **What does automation check?** Chapter 11 showed what `validate` checks, and section 17.3 that `doctor` exits with status 0 on a warning. Whether either should stop a merge, and what a pipeline would need to read to stop it, are not described.
@@ -47,8 +47,8 @@ The questions below follow from what the book showed. Each names the chapter who
 ### Comparisons
 
 - **Would another spec-driven tool behave differently?** Section 1.6 said that another tool may use different names, different artifacts and a different workflow, and chapter 3 that a different tool could arrange the same material and still serve the same principles. The book describes how OpenSpec divides the work between the agent, the program and the developer, and it does not show how another tool divides it.
-- **Would another spec-driven tool check more?** Section 1.6 said that OpenSpec is replaceable in the argument, and the book compares it with nothing. The finding of section 18.2 is a finding about the release the book describes, and whether another tool closes any part of it is open.
+- **Would another spec-driven tool check more?** The book compares OpenSpec with nothing. The finding of section 18.2 is a finding about the release the book describes, and whether another tool closes any part of it is open.
 
 None of these questions is a defect found in the tool. Where OpenSpec has a mechanism for one of them, as it has stores for shared specifications, the book has described the mechanism. What it has not done is use the mechanism where many people, many changes and many months meet, and that is where these questions are decided.
 
-The book has shown, for one release, what OpenSpec writes, what it checks and what it leaves to the developer, and the answer was the same in every chapter: the program checks form and counts, and the content is the developer's to judge. Where many people, many changes and many months meet, the book does not say what happens, and it hands the reader the questions that follow from its finding instead: who reads, who owns, what is shared, and what is checked. The tool will not answer them, because each turns on a reading of content, and that reading is the part of the work that stays with the developer.
+The book has shown, for one release, what OpenSpec writes, what it checks and what it leaves to the developer, and the answer was the same in every chapter: the program checks form and counts, and the content is the developer's to judge. At that scale the book does not say what happens, and it hands the reader the questions that follow from its finding instead: who reads, who owns, what is shared, and what is checked. The tool will not answer them, because each turns on a reading of content, and that reading is the part of the work that stays with the developer.

@@ -6,11 +6,11 @@ The table shows the files of a change and the paths of its specifications. The r
 
 | Item | File | What it says | Discussed in |
 |---|---|---|---|
-| Change | `openspec/changes/<change>/` | The folder of one change. Archive moves it into the archive. | Chapter 4 |
+| Change | `openspec/changes/<change>/` | The folder of one change. | Chapter 4 |
 | **Proposal** | **`proposal.md`** | **Why the change exists and what it changes.** | **Chapters 4 and 5** |
 | Capability | `specs/<capability>/` | The folder for one area of behaviour, such as `purchase`. | Chapters 4 and 6 |
 | Specification | `specs/<capability>/spec.md` | What one change adds, modifies or removes. | Chapters 4 and 6 |
-| Main specification | `openspec/specs/<capability>/spec.md` | The system as it stands. Archive writes it. | Chapters 4 and 6 |
+| Main specification | `openspec/specs/<capability>/spec.md` | The system as it stands. | Chapters 4 and 6 |
 | Design | `design.md` | How the work is done. | Chapters 4 and 7 |
 | Tasks | `tasks.md` | The checks that turn the design into work. | Chapters 4 and 8 |
 | Schema marker | `.openspec.yaml` | The schema the change follows, and `skip_specs` when it has no deltas. | Chapter 4 |
@@ -47,7 +47,7 @@ A customer who pays more than the price of a product expects the difference back
 The machine holds coins, so it has to decide which coins make up the difference.
 ```
 
-Two sentences, both about a customer and a machine. Neither names a denomination, an order of steps, a method for choosing coins, or anything about a stock that is too short for the difference owed. Each of those is decided later, in the specification and in the design. The next two parts of the same file are quoted in section 5.5 and section 5.6, and section 4.2 shows the file in one piece.
+Two sentences, both about a customer and a machine. Neither names a denomination, an order of steps, a method for choosing coins, or anything about a stock that is too short for the difference owed. Each of those is decided later, in the specification and in the design, and section 4.2 shows the file in one piece.
 
 A Why that names the method has already made the design's decision. Suppose the first proposal had said that the machine should work out the change by taking the largest coin that fits and repeating until nothing is owed. The problem would no longer be that a customer is owed money. It would be that the machine should use a particular method, and a reviewer who doubted the method would be arguing about the solution instead of about whether the machine should give change at all. The first Why leaves that argument open. The difference could be paid in any combination of coins from stock, returned before or after the product is released, chosen to keep the stock balanced or to use as few coins as possible. The design decided among those options, and section 4.4 shows which decision it made and why. Because the Why had not chosen first, the design had something to decide and the reviewer had something to challenge.
 
@@ -70,9 +70,9 @@ symptoms:
 artifacts, not whether a design agrees with a scenario.
 ```
 
-The claims the second Why makes about the first version can be checked against a walkthrough that is in the archive. Section 4.7 shows the trace that makes the second symptom visible. The rest of the file is quoted in section 5.5 and section 5.6, and section 4.9 shows it in one piece.
+The claims the second Why makes about the first version can be checked against a walkthrough that is in the archive. Section 4.7 shows the trace that makes the second symptom visible, and section 4.9 shows the file in one piece.
 
-Both reasons are legitimate, and they are doing different jobs. A proposal written before anything has been built has no findings to cite; it can only argue from the use the change is meant to serve, which is what the first one does. A proposal written after a failed attempt can cite what the attempt showed, and it is stronger for it, but only because the evidence exists. Evidence is not a mark of a better proposal, because a first change has none to offer. And a proposal that claims evidence without saying where it can be read is a wish written in the past tense. The useful question is not whether a Why cites something, but whether a reader can check the reason it gives.
+Both reasons are legitimate, and they are doing different jobs. A proposal written before anything has been built has no findings to cite; it can only argue from the use the change is meant to serve, which is what the first one does. A proposal written after a failed attempt can cite what the attempt showed, and it is stronger for it, but only because the evidence exists. Evidence is therefore not a mark of a better proposal. And a proposal that claims evidence without saying where it can be read is a wish written in the past tense. The useful question is not whether a Why cites something, but whether a reader can check the reason it gives.
 
 ## 5.5 What changes, and which capability
 
@@ -91,7 +91,7 @@ What Changes describes the difference the change makes to the system, not the wo
 - `purchase`: the coins the machine holds, and the change it returns for a purchase.
 ```
 
-One bullet, and a capability that says the same thing again, which is the split the template asks for: What Changes says what is added, and Capabilities says where it will be written down. It says the change adds a capability called `purchase` with two requirements, the coins the machine holds and the change it returns for a purchase. It does not say that a delta will be written, then a design, then a task list. That order is the schema's, and chapter 3 is where it belongs. A What Changes that lists the artifacts, or the files to be edited, has recorded a plan.
+One bullet, and a capability that says the same thing again, which is the split the template asks for: What Changes says what is added, and Capabilities says where it will be written down. Neither says that a delta will be written, then a design, then a task list. That order is the schema's, and chapter 3 is where it belongs. A What Changes that lists the artifacts, or the files to be edited, has recorded a plan.
 
 The test is short: after reading the part, can a reader say what the system will do that it does not do now? If the answer describes activity rather than behaviour, the part has been written for the wrong artifact. The template puts two conditions on What Changes that neither example needs: a removal is stated as a removal, and a change that breaks existing behaviour is marked **BREAKING**, which is the schema instruction's own marker. Neither proposal removes anything, so neither has to say so.
 
@@ -115,7 +115,7 @@ Naming the capability is the part that binds the change to a file. The second pr
 
 The second proposal's What Changes is less clean than the first, and it is worth reading closely. The first bullet carries the change: the requirement now demands exact change and says what happens when it cannot be made. The second names a scenario, which is the specification's artifact rather than behaviour. The third states the order in which the design works, and chapter 4's section 4.4 gives that order to the design. Both of them read as a plan, and the part survives because the first bullet is doing the work: a reader can still answer what the system will do.
 
-A capability is an area of behaviour, and its specification lives at that name: the first proposal creates `purchase`, and the second modifies the same one, which is why its Capabilities part uses the Modified heading, and section 4.9 shows the file in one piece. The template asks for a path, so a capability can sit inside an area rather than directly under the root, and every segment the change introduces is written in kebab-case.
+A capability is an area of behaviour, and its specification lives at that name. The template asks for a path, so a capability can sit inside an area rather than directly under the root, and every segment the change introduces is written in kebab-case.
 
 The name is a boundary decision with a cost on both sides. One capability too coarse puts unrelated requirements into a single file, so every later change to either of them modifies the same document and a reader cannot tell which requirements belong together. One capability too fine fragments a behaviour across files, so a change that touches one behaviour has to open three. There is a case for putting the coins and the change in one capability, since neither is meaningful alone: a stock of coins exists in order to make change, and change is made from a stock. Impact is where the consequence is stated, because the capability's name is the path of the file the change will write.
 
@@ -151,7 +151,7 @@ The template has no part for what the change will not do. Exclusions are worth w
 Reviewing a proposal is a single reading of one file, done at the only moment when it is still cheap: after the draft exists and before anything is generated from it. The reading has three passes:
 
 1. Intent: does the draft answer the request as the developer meant it, or an assumption the agent made while drafting?
-2. Size: is it one change? Two unrelated requests written into one proposal produce a delta that modifies two capabilities for no reason they share, and the split is far easier here than after the specification exists.
+2. Size: is it one change? The split is far easier here than after the specification exists.
 3. Claims: is each capability the file names as Modified a file that already exists under `openspec/specs/`, and is each one it names as new absent from there?
 
 The first two passes come first, because nothing written after the proposal can find what they find. A draft that answers the wrong problem is answered faithfully by every later artifact, and a draft that holds two changes produces a specification that serves neither of them.
@@ -172,7 +172,7 @@ Each part fails in ways a drafting agent produces readily, and the table below p
 | Impact: the forecast is honest | The expected blast radius is named, files that may be created are marked as such, and nothing is claimed that the design will have to contradict | The part is an inventory of files that do not exist yet, or it is empty |
 | The scope stays open downstream | Any case the proposal deliberately leaves to the specification is visible to the next artifact rather than lost between them | The boundary is drawn where the specification or the design cannot honour it, and the disagreement is found after all three exist |
 
-The table is a memory aid rather than a gate: no part of the tool reads it, so a row that passes records a person's judgement and not a machine's check. The last row is the only one that is not about the file on its own. A proposal is finished when its boundary can be honoured by what follows, not when its parts have been filled.
+The table is a memory aid rather than a gate: no part of the tool reads it, so a row that passes records a person's judgment and not a machine's check. The last row is the only one that is not about the file on its own. A proposal is finished when its boundary can be honoured by what follows, not when its parts have been filled.
 
 ## 5.9 Changing a proposal after review
 
@@ -209,10 +209,10 @@ Both means end in the same reading, and the reading is what decides whether the 
 
 ## 5.10 What the proposal hands on
 
-The proposal does not make every decision the change needs, and the sections above named the artifact that takes each one it leaves. The cases a requirement must satisfy go to the specification, which the next chapter takes: the proposal says what the system will do, and the specification says it as a requirement with scenarios that decide it case by case. The order in which the system works, the method it uses, and what the change deliberately will not do go to the design, which also holds the alternatives that were rejected. An unknown that can wait goes there too, as section 5.7 said.
+The proposal does not make every decision the change needs, and the sections above named the artifact that takes each one it leaves. The cases a requirement must satisfy go to the specification, which the next chapter takes: the proposal says what the system will do, and the specification says it as a requirement with scenarios that decide it case by case.
 
-What the proposal keeps is the problem and the scope that answers it. That is why its four parts stop where they do: Why names a situation or a finding, What Changes says what the system will do that it does not now, Capabilities says where that will be written down, and Impact says what else is expected to move. Each of the four is checked against an artifact that comes later, and the proposal is the cheapest place to correct any of them.
+What the proposal keeps is the problem and the scope that answers it. Each of its four parts is checked against an artifact that comes later, and the proposal is the cheapest place to correct any of them.
 
 The proposal leaves this chapter at the point where its promise becomes testable. Everything so far has been about the argument: why the change exists, what it changes, and whether the boundary it draws is honest. The next artifact is not an argument. It is a requirement the system must satisfy and a set of scenarios by which that requirement can be decided, and the case the example's first requirement left open is found at that step, when a scenario is written for a stock the first requirement did not mention.
 
-A proposal is drafted by an agent and owned by a person, and that ownership is what the review exists for. The file asks four questions, and the tool checks almost none of the answers: validation never opens it, archive warns about the length of one part and the emptiness of another, and the rest is a person's judgement. A reason can come from the situation a change serves or from the evidence a failed attempt left, and neither is the better kind. The parts that are easy to get wrong are the ones that describe a solution, a plan or a complete inventory, because those are what a drafting agent produces most fluently. The review is one reading, written out as a checklist in the file's own order, and the two checks that come first are the ones nothing later can repair. When the review finds something, the question is how much of the change already exists, and then whether the replacement is known: an edit is cheaper when it is, and a request to the agent is the way when it is not. What the change will not do belongs to the design, and which cases a requirement must satisfy belongs to the specification, so the proposal is the statement made first and revised most cheaply. What a reader should carry away is therefore not a template but a habit. Treat the proposal as the first place a boundary is stated, review it before anything is built from it, and expect the artifacts that follow to hold it to what it opened.
+A proposal is drafted by an agent and owned by a person, and that ownership is what the review exists for. The file asks four questions, and the tool checks almost none of the answers. The parts that are easy to get wrong are the ones that describe a solution, a plan or a complete inventory, because those are what a drafting agent produces most fluently. The review is one reading, written out as a checklist in the file's own order, and the two checks that come first are the ones nothing later can repair. When the review finds something, the question is how much of the change already exists, and then whether the replacement is known: an edit is cheaper when it is, and a request to the agent is the way when it is not. The proposal is the statement made first and revised most cheaply. What a reader should carry away is therefore not a template but a habit. Treat the proposal as the first place a boundary is stated, review it before anything is built from it, and expect the artifacts that follow to hold it to what it opened.

@@ -8,7 +8,7 @@ A project can change four things, and they differ in how far a change reaches. T
 
 The first three are OpenSpec's own, and each is a file that the machine or the project controls. The fourth is named here because it is the fourth place in which a rule can be written, and section 13.7 says why it is not set in the table below.
 
-The question to ask of a need is which kind it belongs at. A rule about one artifact's wording belongs in the configuration. A new file that every change must have belongs in the schema. Which workflows a person can call by name belongs in the profile. A rule for every task in the project, OpenSpec or not, belongs in the instruction file. The tool will accept the same text in more than one of them, and it will not say which was the right place. The chapters before this one taught the default, and this chapter is where that stops.
+The question to ask of a need is which kind it belongs at. A rule about one artifact's wording belongs in the configuration. A new file that every change must have belongs in the schema. Which workflows a person can call by name belongs in the profile. A rule for every task in the project, OpenSpec or not, belongs in the instruction file. The tool will accept the same text in more than one of them, and it will not say which was the right place.
 
 The table has one row for each file in which OpenSpec can be customized, so that a possibility is found in the row of the file it is written in. Its columns say which kind the file belongs to, how the file is made, what it holds, and what the tool checks. A cell that says "Nothing" means that no command reads or reports on it. The fields of `schema.yaml` are those of the schema reference on openspec.dev, which lists every field, the artifact's `description` and the apply block's `instruction` among them.
 
@@ -48,7 +48,7 @@ What the tool checks of all this is the file, which it reads. It checks nothing 
 
 Four places decide which schema a change uses, and the tool reads them in order. The `--schema` flag on the command that creates the change comes first. After it comes the schema the change itself recorded, in the `.openspec.yaml` of its folder. Then comes the default named in the configuration, and last the default of the program, `spec-driven`.
 
-A new change writes its own schema into its `.openspec.yaml` when it is created, and that record outranks the default in the configuration. In the scratch project, a change created under a fork reported `spec-driven` as its schema after its `.openspec.yaml` was edited by hand, though the configuration still named the fork.
+A new change writes its own schema into its `.openspec.yaml` when it is created. In the scratch project, a change created under a fork reported `spec-driven` as its schema after its `.openspec.yaml` was edited by hand, though the configuration still named the fork.
 
 When a schema is not the one a person expects, `openspec schema which` says where it comes from. It reports the schema's name, its Source and its Path, and with `--all` it lists the project schemas, the user schemas and the schemas of the package. A project schema outranks a user schema of the same name. The customization page recommends project schemas, because they are kept with the code.
 
@@ -56,13 +56,13 @@ When a schema is not the one a person expects, `openspec schema which` says wher
 
 A schema is a folder, `openspec/schemas/<name>/`, that holds one file, `schema.yaml`, and a `templates/` folder. There are two ways in. A fork copies an existing schema whole, so that the project starts from `spec-driven` and removes or adds. A new schema starts from nothing but the artifacts that are named: in the scratch project, a schema of two artifacts was written with the proposal and the tasks, neither requiring anything, and an apply block that requires and tracks the tasks. The command `openspec schema init` with no option writes four artifacts, the proposal, the specs, the design and the tasks, each with a template, and the same kind of apply block. An option names a different list of artifacts, and another makes the new schema the project's default.
 
-The file has five top-level keys: the name, a version, a description, the list of artifacts, and the apply block. Each artifact has an id, the file it generates, a description, the template it starts from, the instruction it gives the agent, and the artifacts it requires. These fields are what the table of section 13.1 lists.
+The file's top-level keys, and the fields of each artifact, are those that the table of section 13.1 lists.
 
 The fields differ in what they decide. `requires` decides what is possible: an artifact whose requirements do not exist is blocked, and `openspec status` says by which. An artifact counts as done when its generated file exists, and in the scratch project a change whose design file was empty was reported as complete. The order of the list decides only which artifact comes first when several are ready. A template is Markdown that is injected into the prompt, and it may hold headings, comments with guidance and a sample. `generates` may be a pattern, which is how the default schema writes one file for each capability. The apply block says which artifact must exist before apply and which file's boxes are counted. Its `instruction` is what `openspec instructions apply` returns while the change is ready. When the change is blocked or every task is done the program writes its own text, and the schema's instruction does not appear.
 
 `openspec schema validate` checks that the file is well formed. In the scratch project it reported a template file that was missing, an artifact id that was used twice, and a cycle of requirements, which it named. The customization page lists the same four checks: the syntax, the templates, the cycles and the ids.
 
-A schema is shared by copying its folder. Putting it in the user's data directory makes it available to every project on the machine, and the customization page lists seven schemas written by others that are not part of the core. A schema copied from elsewhere is a fork of it, and a fork does not receive what is later changed in the schema it was copied from; the project keeps it up to date by hand or not at all.
+A schema is shared by copying its folder into one of the two places that section 13.1 names. A schema copied from elsewhere is a fork of it, and a fork does not receive what is later changed in the schema it was copied from; the project keeps it up to date by hand or not at all.
 
 ## 13.6 Placing the needs of an example
 
@@ -77,11 +77,11 @@ The example needs four things, and each belongs at a different place. The table 
 | The agent checks the trace before each task | The schema: a line in `apply.instruction` | It belongs with the trace and travels with the schema, so another project that copies the schema gets it. |
 | The archive summary says whether the trace was read before the merge | The configuration: a line of archive guidance | It is advice about how the work is done, and it is for this project. |
 
-What the tool checks of such a customization is its form. It reports the schema valid and the trace blocked or ready. It does not check that the trace is true, or that the line in the apply instruction is followed, and it cannot find a scenario that nobody wrote. The first version's failure was a case that had no scenario until the second change added it, so the trace would have made the design's non-goal visible once the scenario existed, and the coverage review of chapter 6 remains the check that finds a scenario that is missing. The example is also a fork. It keeps nothing of what is later changed in `spec-driven`, so the project that keeps it keeps up the copy by hand.
+The tool reports the schema valid and the trace blocked or ready. It does not check that the trace is true, or that the line in the apply instruction is followed, and it cannot find a scenario that nobody wrote. The first version's failure was a case that had no scenario until the second change added it, so the trace would have made the design's non-goal visible once the scenario existed, and the coverage review of chapter 6 remains the check that finds a scenario that is missing. The example is also a fork, with the cost that section 13.5 names.
 
 ## 13.7 What is outside of OpenSpec
 
-The instruction file is the fourth place in which a rule can be written, and OpenSpec has no mechanism for it. `AGENTS.md` is read by the agent when a session opens, and not by the program. The program treats it as something to leave alone. The program's cleanup code treats two things as left by earlier versions: a managed `openspec/AGENTS.md`, and a block of text between two markers in the root `AGENTS.md`. In the scratch project, `openspec init` removed the managed file and the marked block from a project that still had them, and kept the rest of the root file as the person had written it. `openspec update` alone changed neither. The root file belongs to the project, and nothing in OpenSpec generates, reads or checks it.
+The instruction file is the fourth place in which a rule can be written, and OpenSpec has no mechanism for it. The program's cleanup code treats two things as left by earlier versions: a managed `openspec/AGENTS.md`, and a block of text between two markers in the root `AGENTS.md`. In the scratch project, `openspec init` removed the managed file and the marked block from a project that still had them, and kept the rest of the root file as the person had written it. `openspec update` alone changed neither. The root file belongs to the project, and nothing in OpenSpec generates, reads or checks it.
 
 That is why it is not a row of the table. The last column of the table says what the tool checks, and a row that says "Nothing" about a file the tool does not know would suggest that the tool does something with it. It is better compared with the project configuration, which is the place nearest to it.
 
@@ -91,15 +91,15 @@ That is why it is not a row of the table. The last column of the table says what
 | Applies to | Every task in the project, OpenSpec or not | Only the artifacts and operations OpenSpec instructs |
 | What the tool checks | Nothing | The file's form, and nothing about what it says |
 
-A rule that every task must follow, such as the language of the project's files, belongs in the instruction file. A rule about what one artifact contains belongs in the configuration, where it is read when the artifact is written. A rule written in both can disagree with itself, and nothing warns of it, so the person who writes both has to read them together. Section 3.5 gave the reason the rules live with the code. This chapter adds only that they live in two places, and that the tool knows one of them.
+A rule that every task must follow, such as the language of the project's files, belongs in the instruction file, as section 13.1 said. A rule written in both the instruction file and the configuration can disagree with itself, and nothing warns of it, so the person who writes both has to read them together. Section 3.5 gave the reason the rules live with the code. This chapter adds only that they live in two places, and that the tool knows one of them.
 
 ## 13.8 What the tool checks, and what it leaves out
 
-The tool checks the form of a customization and never its effect. The profile is reported by `openspec config list`. The configuration is read as a file. The schema is checked for its syntax, its templates, its cycles and its ids. The instruction file is not checked at all.
+The tool checks the form of a customization and never its effect, as the last column of the table in section 13.1 shows.
 
-The effect is left to the reviewer, and it can fail in ways the checks do not see. A schema that validates can tell the agent something that does not produce the artifact the template holds. The default schema does this once already: section 7.7 shows that its instruction for the design names two parts the template lacks. A rule can be ignored, because it is advice that the agent reads. A context can be wrong, and it is injected as it stands. The guidance for apply and archive is advisory, and no command reports whether it was followed. The order of the artifact list, and the wording of a fork's instruction, change what an agent does and are checked by nothing.
+The effect is left to the reviewer, and it can fail in ways the checks do not see. A schema that validates can tell the agent something that does not produce the artifact the template holds. The default schema does this once already: section 7.7 shows that its instruction for the design names two parts the template lacks. The rules, the context and the guidance of section 13.3 are advice, and none of them is enforced. The order of the artifact list, and the wording of a fork's instruction, change what an agent does and are checked by nothing.
 
-Each of these can happen to a change that passes every command, so a customization that reports well-formed has shown that it is well-formed, and no more.
+Each of these can happen to a change that passes every command, so a customization that reports well formed has shown that it is well formed, and no more.
 
 ## 13.9 Reviewing a customization
 
@@ -131,6 +131,6 @@ The row for changes in progress is the one to read twice. A schema is shared by 
 
 ## 13.11 What customization hands on
 
-Customization hands the project a harness that is its own. The profile says which workflows can be called, the configuration says what is added to what the agent is told, and the schema says what a change is made of. Each is a file that is kept with the project or the machine, and each can be read, reviewed and revised like any other. The tool accepts all of it when it is well formed, and it says nothing about whether it was wise.
+Customization hands the project a harness that is its own. Each of its files is kept with the project or the machine, and each can be read, reviewed and revised like any other.
 
-A customization is a choice of the kind that reaches as far as the need and no further, and the tool will confirm only that it was made well-formed. The question to ask of any customization is where it was made and what is checked there.
+A customization is a choice of the kind that reaches as far as the need and no further, and the tool will confirm only that it was made well formed. The question to ask of any customization is where it was made and what is checked there.

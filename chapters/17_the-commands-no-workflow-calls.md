@@ -39,7 +39,7 @@ The first group reads. The developer runs each command, the program prints, and 
 
 `spec` and `change` are the older form of the same reading, with the noun first. Each of them prints a warning that the commands are deprecated and names the verb-first command to use instead, `openspec show`, `openspec list` or `openspec validate`. The verdicts of `spec validate` and `change validate` are those of `validate`. A script that still calls them works and warns. A new one has no reason to use them.
 
-For the developer, these commands are a way to read without opening files. The review is the reading itself, and nothing in the output is a check that the earlier chapters did not describe. A dashboard full of ticks says that files exist, as `status` does in chapter 10.
+For the developer, these commands are a way to read without opening files, and the review is the reading itself. A dashboard full of ticks says that files exist, as `status` does in chapter 10.
 
 ## 17.3 Checking the harness
 
@@ -84,7 +84,7 @@ The skills follow the same rule. Each workflow skill of chapters 9 to 12 carries
 
 A workset is a name for several folders, kept on the machine. `workset open` writes a workspace file and opens the folders in one editor window; the guide says that the openers for two editors are built in and that those for terminal agents are disabled for now. `workset remove` removes the list and leaves the member folders untouched. A workset does not change which `openspec/` folder a command uses.
 
-For the developer, the review of this group is of the machine. The registry and the worksets are files outside every repository. OpenSpec never clones, pulls or pushes a store: a teammate clones it with Git and registers it on each machine, and a checkout that was not pulled shows old specifications until it is pulled. A teammate who clones only the project does not have the store, which is why `doctor` reports a reference as unregistered on a new machine. Only two commands touch a folder: `store setup` creates one, and `store remove --yes` deletes one.
+For the developer, the review of this group is of the machine. The registry and the worksets are files outside every repository. OpenSpec never clones, pulls or pushes a store: a teammate clones it with Git and registers it on each machine, and a checkout that was not pulled shows old specifications until it is pulled. A teammate who clones only the project does not have the store, which is why `doctor` reports a reference as unregistered on a new machine.
 
 ## 17.5 The program itself
 
@@ -114,10 +114,9 @@ For the developer, this group is the one whose effect is outside the project. Be
 The program checks none of these commands' effects. It reads, it reports and it writes what it is told, and the earlier chapters' checks of form are the only checks there are. What a wrong run costs depends on what it wrote:
 
 - A reading or checking command changes no file, so a wrong run costs a second run with the right name or form.
-- A warning from `doctor` is read and not counted, so a gate that relies on its exit status passes a missing reference.
 - `store unregister` and `workset remove` are undone by registering the store or creating the workset again, because their files were left in place.
 - `store remove --yes` deletes the folder. Only a copy elsewhere, such as a pushed remote, brings it back.
-- A store checkout that was not pulled shows old specifications, and the agent works against them. OpenSpec never pulls a store, so only pulling it with Git brings it up to date.
+- A store checkout that was not pulled shows old specifications, and the agent works against them until it is pulled with Git.
 - `install` leaves two copies of the program until one is removed, and the path decides which runs.
 - A `feedback` issue is public once it is filed, and correcting it is a matter for the tracker, not for the program.
 
