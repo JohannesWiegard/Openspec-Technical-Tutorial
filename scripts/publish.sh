@@ -12,7 +12,7 @@
 #   README.md                              (maintained here, not copied)
 #
 # Build the book first in the source repository if it should be updated:
-#   python3 tools/build_book.py
+#   .venv/bin/build-book
 
 set -euo pipefail
 
