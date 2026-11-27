@@ -33,11 +33,11 @@ In the first run both changes were archived. The main requirement held the secon
 
 In the second run the first change added a scenario to the requirement, and the second change, drafted before that, did not carry it. While the first change was open, `validate` passed the second. Once the first was archived, `validate` failed with "MODIFIED … omits scenario(s) the current spec still has". Archive printed "Refresh the change spec before archiving to avoid dropping scenarios." and "Aborted. No files were changed.", exited with code 1, and left the second change open. The same change passed before an archive and was refused after it.
 
-That refusal is the only one the runs produced. Both rows agree with chapter 12's row for MODIFIED, which says that a block must carry every scenario and that `validate` and archive reject one that drops it. What the runs add is that the check is made against the main specification as it stands on the day of the check, so the order of archiving decides whether a change is refused.
+That refusal is the only one the runs produced. Both rows agree with chapter 12's row for MODIFIED, which says that a block must carry every scenario and that `validate` and archive reject one that drops it. What the runs add is that, because the check is made against the main specification as it stands, the order of archiving decides whether a change is refused.
 
 ## 16.4 What bulk-archive adds
 
-Section 15.5 describes bulk-archive and its rule for a conflict. Three details bear on the question of this chapter.
+Three details of bulk-archive bear on the question of this chapter.
 
 The skill defines a conflict as two or more chosen changes with delta specs for the same capability path. The path is the unit and not the requirement, so two changes that modify different requirements of one capability count as a conflict too.
 
@@ -47,7 +47,7 @@ The skill shows its resolution of each conflict in its table before it asks its 
 
 ## 16.5 What verify's evidence is
 
-Section 15.4 describes verify, its three dimensions and its severities. What it leaves open is what a report rests on, which is a matter of what the skill tells the agent to do.
+What section 15.4 leaves open about verify is what a report rests on, which is a matter of what the skill tells the agent to do.
 
 - For each added or modified requirement, the skill tells the agent to search the code for keywords related to it and to "assess if implementation likely exists".
 - For each scenario, it tells the agent to check whether the conditions are handled in the code and whether tests exist that cover it.
@@ -100,7 +100,7 @@ After a mismatch between the code and the specification, the skill's recommendat
 - for a scenario that is not covered: "Add test or implementation for scenario: `<description>`";
 - for a design decision the code does not follow: "Update implementation or revise design.md to match reality".
 
-The recommendations name the code first, and only the design decision has the artifact as a way out. Which side was wrong is the developer's decision. A requirement the code does not meet may be a missing implementation, or a requirement that was not right. When the artifact is at fault and the change is open, it is revised in the change, as section 11.5 says. When the requirement is archived, it is corrected by a new change, as chapter 12 says, and the archive is not edited.
+The recommendations name the code first, and only the design decision has the artifact as a way out. Which side was wrong is the developer's decision. A requirement the code does not meet may be a missing implementation, or a requirement that was not right. When the artifact is at fault and the change is open, it is revised in the change, as section 11.5 says. When the requirement is archived, it is corrected by a new change, as after a wrong second archive.
 
 ## 16.9 What the example shows
 

@@ -6,31 +6,22 @@ The table shows the files of a change and the paths of its specifications. The r
 
 | Item | File | What it says | Discussed in |
 |---|---|---|---|
-| Change | `openspec/changes/<change>/` | The folder of one change. Archive moves it into the archive. | Chapter 4 |
+| Change | `openspec/changes/<change>/` | The folder of one change. | Chapter 4 |
 | Proposal | `proposal.md` | Why the change exists and what it changes. | Chapters 4 and 5 |
 | Capability | `specs/<capability>/` | The folder for one area of behaviour, such as `purchase`. | Chapters 4 and 6 |
 | Specification | `specs/<capability>/spec.md` | What one change adds, modifies or removes. | Chapters 4 and 6 |
-| Main specification | `openspec/specs/<capability>/spec.md` | The system as it stands. Archive writes it. | Chapters 4 and 6 |
+| Main specification | `openspec/specs/<capability>/spec.md` | The system as it stands. | Chapters 4 and 6 |
 | **Design** | **`design.md`** | **How the work is done.** | **Chapters 4 and 7** |
 | Tasks | `tasks.md` | The checks that turn the design into work. | Chapters 4 and 8 |
 | Schema marker | `.openspec.yaml` | The schema the change follows, and `skip_specs` when it has no deltas. | Chapter 4 |
 
-The table lists the parts of `design.md`. The parts this chapter quotes or discusses are in bold.
-
-| Design | Description |
-|---|---|
-| **Context** | The current state and the constraints that shape the approach. |
-| **Goals / Non-Goals** | What the design aims for, and what it leaves out at design level. |
-| **Decisions** | Each decision, with the reason for it and, where one was rejected, the alternative. |
-| **Risks / Trade-offs** | Each risk, followed by what is done about it. |
-
 ## 7.1 Who writes the design
 
-The agent drafts the first version of `design.md` from the schema's instruction for the design and from the proposal, which is the one artifact the tool lists as the design's dependency. It supplies the four parts of the template, in the form the instruction asks for, and it supplies a reason for each decision that reads as sound. The instruction also says when a design is needed: a change that crosses several modules or brings a new architectural pattern, a new external dependency or a significant change to the data model, a concern about security, performance or migration, or an ambiguity that technical decisions would settle before coding. The developer decides whether one of those conditions applies, and the agent cannot decide it for them.
+The agent drafts the first version of `design.md` from the schema's instruction for the design and from the proposal. It supplies the four parts of the template, in the form the instruction asks for, and it supplies a reason for each decision that reads as sound. The instruction also says when a design is needed: a change that crosses several modules or brings a new architectural pattern, a new external dependency or a significant change to the data model, a concern about security, performance or migration, or an ambiguity that technical decisions would settle before coding. The developer decides whether one of those conditions applies, and the agent cannot decide it for them.
 
 What the agent cannot supply is what the developer knows about the work. It cannot say which alternatives were really open, which constraints the code or the team imposes, or which cases the design may leave out. The example has no code, so its Context has no state of a codebase to describe; a design in a project with code begins there. The developer's part is to challenge the reasons, not to proofread the form. Section 5.1 describes the same division for the proposal, and chapter 2 gives the reason human control stays with the developer.
 
-In the `spec-driven` schema the design requires only the proposal, while the tasks require both the specification and the design. The tool therefore does not wait for the delta before it offers the design, and `openspec instructions design` lists the proposal as the design's only dependency. The order this book follows, in which the delta is reviewed before the design is written from it, has a reason: the design is traced against the scenarios, and a scenario that changes after the design is written means the traces have to be done again. Chapter 3 says that the dependencies between artifacts are enablers, not phase gates. This is the case where the tool shows it, because it does not enforce the order the book recommends.
+In the `spec-driven` schema the design requires only the proposal, while the tasks require both the specification and the design. The tool therefore does not wait for the delta before it offers the design. The order this book follows, in which the delta is reviewed before the design is written from it, has a reason: the design is traced against the scenarios, and a scenario that changes after the design is written means the traces have to be done again. Chapter 3 says that the dependencies between artifacts are enablers, not phase gates. This is the case where the tool shows it, because it does not enforce the order the book recommends.
 
 ## 7.2 The parts of a design
 
@@ -43,7 +34,7 @@ The table says what the tool checks of each part of the design. For this artifac
 | Decisions | Nothing. | What was chosen, for what reason, and what was given up? |
 | Risks / Trade-offs | Nothing. | What can go wrong, and what is done about it? |
 
-The tool reads nothing of the design. `validate` reads the delta and never opens `design.md`, and `archive` does not open it either. `status` counts the file as done if it exists, whatever it contains: a design of one character and an empty design both show as done. A change with no design validates and archives, while `status` shows the tasks as blocked until the file exists. That is the finding of this section, and it does not mean the design matters less than the other artifacts. It means that every check on it is a person's. The instruction asks for a design only when one of its four conditions applies, and the schema makes the tasks wait for the file; those are two rules, and the tool enforces only the second. The four parts are the whole of the default template, and a part that a project adds belongs in a forked schema, as chapter 3 described. The two parts that the instruction names beyond the template are named in section 7.7.
+The tool reads nothing of the design. `validate` reads the delta and never opens `design.md`, and `archive` does not open it either. `status` counts the file as done if it exists, whatever it contains: a design of one character and an empty design both show as done. A change with no design validates and archives. That is the finding of this section, and it does not mean the design matters less than the other artifacts. It means that every check on it is a person's. The instruction asks for a design only when one of its four conditions applies, and the schema makes the tasks wait for the file; those are two rules, and the tool enforces only the second. The four parts are the whole of the default template, and a part that a project adds belongs in a forked schema, as chapter 3 described. The two parts that the instruction names beyond the template are named in section 7.7.
 
 ## 7.3 A context that points back
 
@@ -57,7 +48,7 @@ its stock. This design says how the machine works out those coins and in what or
 it does its steps.
 ```
 
-A Context says what a reader needs in order to follow the decisions, and it points at the proposal and the delta for the rest. The instruction asks for the current state and the constraints, and it asks the design to refer to the proposal and the specifications rather than restate them. The first Context names the requirement it serves in one sentence, and then says what the design covers: how the machine works out the coins and in what order it does its steps. A reviewer can keep that sentence or cut it. It restates the requirement, which the delta already holds, but a reader who has not opened the delta needs to know which requirement is meant.
+A Context says what a reader needs in order to follow the decisions, and it points at the proposal and the delta for the rest. The instruction asks for the current state and the constraints, and it asks the design to refer to the proposal and the specifications rather than restate them. The first Context names the requirement it serves in one sentence, and then says what the design covers. A reviewer can keep that sentence or cut it. It restates the requirement, which the delta already holds, but a reader who has not opened the delta needs to know which requirement is meant.
 
 The file is `design.md` in the change `refuse-without-exact-change`, and its Context reads as archived:
 
@@ -70,7 +61,7 @@ The scenario "Stock cannot make the change" was not traced then, because it did 
 exist. This design replaces the order of steps and records the trace that shows why.
 ```
 
-This Context ties the design to the one before it. It names the first design by its change, says what that design traced and what it did not trace, and says that this design replaces the order of steps. A reader of this file alone can find the thing it replaces. The full account of the first design is in section 4.11, and this chapter does not repeat it.
+This Context ties the design to the one before it, so a reader of this file alone can find the thing it replaces. The full account of the first design is in section 4.11, and this chapter does not repeat it.
 
 ## 7.4 Goals and non-goals
 
@@ -110,9 +101,9 @@ The file is `design.md` in the change `refuse-without-exact-change`, and its Goa
 - Telling the customer why a purchase was refused.
 ```
 
-The goal restates the delta's outcome in the design's own words, so a reviewer can set it beside the requirement and compare them. The two non-goals are the coin denominations and any message to the customer. None of the three scenarios of the requirement that this change modifies tests either of them. A non-goal that no scenario tests costs little to state, and a reviewer can confirm from the delta that it is safe to state.
+The goal restates the delta's outcome in the design's own words, so a reviewer can set it beside the requirement and compare them. None of the three scenarios of the requirement that this change modifies tests either of them. A non-goal that no scenario tests costs little to state, and a reviewer can confirm from the delta that it is safe to state.
 
-A non-goal makes a case visible, but it does not decide the case. What the system must do belongs to the delta (section 6.6), so a design that sets a case aside has not decided it; it has said that it does not decide it. When a reviewer reads the non-goals, the question is the same for each one: does a scenario test this case? If one does, the design cannot list it as a non-goal, because the scenario says what the system must do and the design has to produce it. If none does, the reviewer asks whether the requirement's wording covers the case. If the wording covers it, the case belongs in a scenario, and the delta is where chapter 6 found the stock case, by varying what the requirement depends on (section 6.4). If the wording does not cover it, the non-goal stands. That is the answer to the question chapter 6 left open: a design records the case it sets aside, and the reviewer decides, with the delta open, whether the case was the design's to set aside.
+A non-goal makes a case visible, but it does not decide the case, because what the system must do belongs to the delta (section 6.6). When a reviewer reads the non-goals, the question is the same for each one: does a scenario test this case? If one does, the design cannot list it as a non-goal, because the scenario says what the system must do and the design has to produce it. If none does, the reviewer asks whether the requirement's wording covers the case. If the wording covers it, the case belongs in a scenario, and the delta is where chapter 6 found the stock case, by varying what the requirement depends on (section 6.4). If the wording does not cover it, the non-goal stands. That is the answer to the question chapter 6 left open: a design records the case it sets aside, and the reviewer decides, with the delta open, whether the case was the design's to set aside.
 
 ## 7.5 Decisions and their reasons
 
@@ -162,7 +153,7 @@ because the product is already gone when the refund is decided.
 
 Both reasons of the second design cite the requirement: "the requirement says the change is exact" and "the requirement gives no near-miss outcome". A reviewer can set each reason beside the delta and decide whether it holds. The decision that changes between the two designs is the order of steps. The first design released the product first, and this design works out the change before the release, so the reasons support the decision that moved.
 
-The instruction asks for alternatives that were considered for each decision. The first design records none. The second records two, both under its second decision, and none under its first. A file with no alternative does not say whether one was open, so a reviewer cannot tell a decision from a default. The reviewer's question is which alternative someone would actually have chosen. The two in the second design are the two that keep the first design's order, and those are the ones that matter. The instruction asks for alternatives that were considered, not for every alternative that could be imagined. What each rejected alternative gave up is set out in section 4.11.
+The instruction asks for alternatives that were considered for each decision. The first design records none. The second records two, both under its second decision, and none under its first. A file with no alternative does not say whether one was open, so a reviewer cannot tell a decision from a default. The reviewer's question is which alternative someone would actually have chosen. The two in the second design are the two that keep the first design's order, and those are the ones that matter. What each rejected alternative gave up is set out in section 4.11.
 
 ## 7.6 Risks and what they cost
 
@@ -175,7 +166,7 @@ The file is `design.md` in the change `give-exact-change`, and its Risks / Trade
   → Refilling is outside this change; the design assumes a stocked machine.
 ```
 
-A risk names what could go wrong and what is done about it. The instruction gives that as an arrow from the risk to its mitigation, and the first design follows the form. The risk is that the stock shrinks with each purchase and nothing refills it. The mitigation is that refilling lies outside the change. The risk names its cause, but it does not name what the machine does once the stock has run down, which is the case the first design set aside in its Goals / Non-Goals. A reviewer reads the arrow for whether the mitigation is a decision or a deferral, and here it is a deferral that the design states.
+A risk names what could go wrong and what is done about it. The instruction gives that as an arrow from the risk to its mitigation, and the first design follows the form. The risk names its cause, but it does not name what the machine does once the stock has run down, which is the case the first design set aside in its Goals / Non-Goals. A reviewer reads the arrow for whether the mitigation is a decision or a deferral, and here it is a deferral that the design states.
 
 The file is `design.md` in the change `refuse-without-exact-change`, and its Risks / Trade-offs reads as archived:
 
@@ -187,7 +178,7 @@ The file is `design.md` in the change `refuse-without-exact-change`, and its Ris
   mitigate it.
 ```
 
-The second design has the same cause and names a consequence: refusals become more likely as the stock runs down. Its mitigation is again outside the change, and the design says that it does not mitigate the risk. A risk left unmitigated is a decision once it is stated, and a reviewer can judge whether the consequence is acceptable. Section 4.11 says what changed between the two risks.
+The second design has the same cause and names a consequence, and it says that it does not mitigate the risk. A risk left unmitigated is a decision once it is stated, and a reviewer can judge whether the consequence is acceptable. Section 4.11 says what changed between the two risks.
 
 ## 7.7 What the template leaves out
 
@@ -197,7 +188,7 @@ The instruction for the design asks for two parts that the template does not hav
 
 A design is reviewed after the delta is reviewed and before the tasks are written from it. The tasks are written from the design, so a decision that nobody traced becomes a task that nobody can check. The review has four passes. Intent asks whether the design serves the behaviour the delta states. Reasons asks whether each decision's reason can be checked, and, where the delta leaves a choice open, whether an alternative was recorded. Trace asks whether each scenario can be walked through the decisions to the outcome it states, as section 4.7 walks one. Boundaries asks whether each non-goal is a case that no scenario tests, and whether each risk says what happens when it occurs. Trace and boundaries matter most, because the tool cannot see either of them, and chapter 6 handed the design the cases it must meet.
 
-A trace tests the design against the cases that exist, and it cannot supply a case. A trace walks one scenario through the decisions by hand: the WHEN gives the inputs, the decisions are applied in order, and the result is compared with the THEN. The example's designs record their traces, and its tasks cite them, in sections 4.5 and 4.12. The second design traces all three of its scenarios, including the two that the first design had passed, as section 4.11 shows. A trace can find a decision that contradicts a scenario. It cannot find a case that no scenario names. Chapter 6 found the stock case by writing a scenario for it first, and only then was the design traced against it, as section 4.7 shows.
+A trace tests the design against the cases that exist, and it cannot supply a case. A trace walks one scenario through the decisions by hand: the WHEN gives the inputs, the decisions are applied in order, and the result is compared with the THEN. The example's designs record their traces, and its tasks cite them, in sections 4.5 and 4.12. The second design traces all three of its scenarios, including the two that the first design had passed, as section 4.11 shows.
 
 The table is one checklist, in the order the file is read. The column names use the artifact's name, which here is the design.
 
@@ -213,7 +204,7 @@ The table is one checklist, in the order the file is read. The column names use 
 | Trace | Each scenario of the delta can be walked through the decisions to the outcome it states | A trace covers only the scenarios that existed when the design was written, and a scenario added later is never traced |
 | Downstream | The tasks can be written from the design, and each decision has a check that can mark it done | A decision is one that no task can check, or a task asks for something the design does not decide |
 
-The table is a memory aid, and no part of the tool reads it. A row that passes records a person's judgement, not a machine's check. The last two rows are the only ones that are not about the file on its own. A design is finished when it can be traced, not when its parts are filled, and a design that passes every other row but leaves a scenario untraced is not finished.
+The table is a memory aid, and no part of the tool reads it. A row that passes records a person's judgment, not a machine's check. The last two rows are the only ones that are not about the file on its own. A design is finished when it can be traced, not when its parts are filled, and a design that passes every other row but leaves a scenario untraced is not finished.
 
 ## 7.9 Changing a design after review
 
@@ -225,9 +216,9 @@ When the review finds a fault, two decisions follow: what the revision covers, a
 | The design, with the tasks written from it | Those too, because the tasks were written from the decisions that changed. |
 | An archived change | Nothing in the archive. A later gap goes into a new change, whose design names the design it replaces in its Context. |
 
-The archive keeps the decisions as they were made, as section 5.9 says of the proposal, and the same reason applies here. The example shows the bottom row and not the middle one. The second change's design is a new design in a new change. It names the first design in its Context, replaces the order of steps, and traces all three scenarios again, as section 4.11 shows. The first design is not touched. The middle row, a design revised while its tasks exist, has no case in the archive, for the reason chapter 5 gives: the second change was written after the first was archived, from a finding.
+The archive keeps the decisions as they were made, as section 5.9 says of the proposal, and the same reason applies here. The example shows the bottom row and not the middle one. The second change's design is a new design in a new change, as section 4.11 shows, and the first design is not touched. The middle row, a design revised while its tasks exist, has no case in the archive, for the reason chapter 5 gives: the second change was written after the first was archived, from a finding.
 
-A revision is made by editing the file or by asking the agent to change it, and the choice turns on whether the replacement is known. The developer edits when the decision is already worked out. The developer asks the agent when the decision has to be worked out from the delta and the other decisions. The table compares the two means on four points.
+A revision is made by editing the file or by asking the agent to change it, and the choice turns on whether the replacement is known. The table compares the two means on four points.
 
 | | The developer edits the file | The agent is asked to revise it |
 |---|---|---|
@@ -240,12 +231,12 @@ Suppose the second reason of the first design had said that the method is the us
 
 Suppose a design, not one of the example's, records one decision with no alternative, and the developer cannot yet say what was open. The request to the agent names that decision, says that no alternative is recorded for it, and says that the decision's text, its reason, the other decisions and the traces must not move. The agent proposes alternatives from the delta and the design's other decisions, and the developer decides which of them anyone would have chosen. Without the third part, the agent may rewrite the whole Decisions part, and the rewrite may change decisions that nobody asked about.
 
-Both means end in the same reading. An edit is checked by its diff, and a revision made by asking is a rewrite, so the whole design is read again as a new draft, with the four passes of section 7.8. Chapter 6 said that the tool catches a scenario dropped from a MODIFIED block and does not catch one whose text moved. A design has no such check. A decision can be dropped, or its reason changed, and `validate` still passes, because it never opens the file. The trace is what notices, and it notices only for the scenarios that exist.
+Both means end in the same reading. An edit is checked by its diff, and a revision made by asking is a rewrite, so the whole design is read again as a new draft, with the four passes of section 7.8. Chapter 6 said that the tool catches a scenario dropped from a MODIFIED block and does not catch one whose text moved. A design has no such check. A decision can be dropped, or its reason changed, and `validate` still passes. The trace is what notices, and it notices only for the scenarios that exist.
 
 ## 7.10 What the design hands on
 
-The design hands the tasks the decisions to check and the traces that have been done. The tasks are written from the design, and section 4.5 shows the first two tasks of the example, which are traces of its two scenarios. The design also hands over any open question, which the instruction for the tasks asks to be resolved before the tasks are written. What the delta handed to the design, the design now holds as decisions, each with its reason and, where one was open, its alternative.
+The design hands the tasks the decisions to check and the traces that have been done. Section 4.5 shows the first two tasks of the example, which are traces of its two scenarios. The design also hands over any open question, which the instruction for the tasks asks to be resolved before the tasks are written. What the delta handed to the design, the design now holds as decisions, each with its reason and, where one was open, its alternative.
 
 The tasks do not say what the system must do, and they do not decide how it works. They say how each decision is checked, and they turn those checks into items that can be marked done. A command and a workflow that are not files, `validate` and archive, close the change. Chapter 8 takes up the tasks and outlines what follows them, and chapters 11 and 12 describe them in full.
 
-A design is the decisions that meet the cases. An agent drafts it, a program reads none of it, and a person judges it by tracing the cases through it. The agent supplies the four parts and the form the instruction asks for, and the developer decides whether a design is needed and whether each reason holds. The tool checks none of the four parts, so the review is the whole of the check. A reason that can be set beside a requirement can be checked, and a reason that is only convenience cannot. A non-goal is a statement that the review reads against the scenarios, and a trace is the pass that finds a decision in conflict with a case. The reader should carry away that a design is judged by whether its scenarios can be traced through it and whether what it leaves out is honest. A design that the tool accepts can still leave a scenario untraced, and finding that scenario is the reviewer's work.
+A design is the decisions that meet the cases. An agent drafts it, a program reads none of it, and a person judges it by tracing the cases through it. The agent supplies the four parts and the form the instruction asks for, and the developer decides whether a design is needed and whether each reason holds. A reason that can be set beside a requirement can be checked, and a reason that is only convenience cannot. A non-goal is a statement that the review reads against the scenarios, and a trace is the pass that finds a decision in conflict with a case. The reader should carry away that a design is judged by whether its scenarios can be traced through it and whether what it leaves out is honest. A design that the tool accepts can still leave a scenario untraced, and finding that scenario is the reviewer's work.

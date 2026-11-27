@@ -61,8 +61,7 @@ that intent is available. Two sessions can follow different conventions: one may
 use the pattern the project already has, and the next may invent a new one. The
 response is not a better prompt. It is a shared, explicit reference:
 requirements, constraints, acceptance criteria and project context become
-first-class artifacts. The specification is that reference for intent, and it
-remains one only as long as it is reviewed and corrected.
+first-class artifacts. The specification is that reference for intent.
 
 ## 2.3 Why the order of work changes
 
@@ -148,8 +147,7 @@ further consequences follow from the same gap:
   criteria are connected instead of scattered across chats, tickets, wikis and
   comments.
 
-These are problems of communication and memory, not of coding skill. SDD
-addresses the record, not the ability to write code. A team that cannot write a
+These are problems of communication and memory, not of coding skill. A team that cannot write a
 clear requirement will not become able to do so because it adopts a framework;
 the framework only makes the gap visible sooner.
 
@@ -178,10 +176,7 @@ engineering.
 - It does not prevent specification rot automatically. Specifications must be
   maintained, or they become misleading documentation.
 
-The limits are the limits of any written record, not a defect in the idea. A
-record can be precise and still describe the wrong thing, and even a well-judged
-record cannot decide what is worth building or replace the judgment that keeps it
-honest.
+The limits are the limits of any written record, not a defect in the idea.
 
 Decay has a mechanism, and it is the reason the cornerstone asks for what rather
 than how. Implementation detail helps an agent that lacks context, and it dates
@@ -194,8 +189,7 @@ detail to be replaced.
 A green test is a weak signal on its own. It can pass because the work is right or
 because the test never looks, and the result looks identical either way. Evidence
 requires the possibility of failure: only a test that could have gone the other
-way shows anything about the claim. Confirmation proves little; a failed
-expectation is what shows the test was looking at the claim.
+way shows anything about the claim.
 
 A requirement that constrains a state does not say how a transition between two
 states is carried out. The design records that decision, and the reason it chose
@@ -224,9 +218,7 @@ judgment:
   fragments.
 
 The developer's role shifts from typing every line to directing, reviewing and
-integrating work. That is a change in emphasis, not a loss of relevance. AI can
-accelerate implementation, but humans remain responsible for deciding what should
-exist, why, and whether the result is acceptable.
+integrating work. That is a change in emphasis, not a loss of relevance.
 
 Whoever writes a record bears its cost, while its benefit goes to people who
 arrive later, so a team must settle what earns one.

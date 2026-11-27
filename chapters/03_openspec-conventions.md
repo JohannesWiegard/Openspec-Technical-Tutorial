@@ -33,8 +33,7 @@ installed for every project, and stores registered as standalone OpenSpec
 repositories. It also sends anonymous usage statistics, the command's name and the
 release and nothing of the project, unless `OPENSPEC_TELEMETRY=0` or the
 configuration turns them off. The `openspec/` tree is
-plain files, versioned and shared by git like any other file, and a session never
-depends on a service being reachable, because the work uses none. A project that
+plain files, versioned and shared by git like any other file. A project that
 stops using the tool keeps files any editor can read: the format is Markdown,
 and the tool operates on it rather than containing it.
 
@@ -84,8 +83,7 @@ phase gates: they say what becomes possible, not what must happen next. What
 a change folder contains is fixed by the project, not by the tool, and the
 tool checks whatever the project declared.
 
-With the tool's nature stated — a program over plain, git-versioned Markdown,
-checking what agents write — what remains to describe is what those files hold.
+With the tool's nature stated, what remains to describe is what those files hold.
 
 ## 3.2 The shape of the record
 
@@ -102,7 +100,7 @@ separate questions: what does this system do, and what is about to change?
 
 ## 3.3 The system as it is
 
-The specifications under `openspec/specs/` are organised by capability. A
+The specifications under `openspec/specs/` are organized by capability. A
 capability is a coherent area of behaviour, and each one holds requirements and
 scenarios. A requirement states what must be true of the system. A scenario gives
 one concrete case that shows the requirement being met or missed.
@@ -121,10 +119,8 @@ the cornerstone of the specification as shared reference.
 ## 3.4 A change as a folder
 
 A proposed modification lives in `openspec/changes/<change-name>/`. The folder is
-self-contained: it holds the proposal that explains why the work is needed, the
-delta specifications that state what changes, the design that explains the
-approach and the tasks that break the work into steps. Chapter 1 named these
-artifacts; the point here is that they sit together.
+self-contained: it holds the four artifacts the default schema produces, and the
+point here is that they sit together.
 
 That grouping is the cornerstone of a change as a first-class unit, and it is the
 cornerstone of reviewability. A reviewer can read the intent,
@@ -138,8 +134,7 @@ sentence leaves undecided. The same request shows what a change folder has to
 hold. As a change it becomes `add-csv-export/`, and the folder has to answer the
 questions the sentence left open: which records are exported, which columns,
 whether the current filter applies, how dates and numbers are formatted, and who
-is permitted to export what. The illustration is the one chapter 1 used, not a
-change in this repository. Its value is that the request is small enough to hold
+is permitted to export what. The illustration is not a change in this repository. Its value is that the request is small enough to hold
 in mind while the conventions are introduced.
 
 A delta specification does not repeat the whole system specification. It states
@@ -212,10 +207,9 @@ That is the cornerstone of living documentation, and it is the difference
 between a specification written before coding and one that is maintained. The
 current specification is updated because the work changed, not because someone
 remembered to update it. The archive is not a backup; it is the record of how
-the current description reached its form, and the reasoning in it is only as
-complete as the people who wrote the change made it. A decision that was settled
-in a conversation and never written into the change is not in the archive, and
-nothing later can recover it.
+the current description reached its form. A decision that was settled in a
+conversation and never written into the change is not in it, and nothing later
+can recover it.
 
 ## 3.7 What the conventions leave to people
 

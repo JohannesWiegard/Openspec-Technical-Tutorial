@@ -17,16 +17,16 @@ The artifacts come from the default schema of the tool, `spec-driven`.
 
 | Item | File | What it says | Discussed in |
 |---|---|---|---|
-| Change | `openspec/changes/<change>/` | The folder of one change. Archive moves it into the archive. | Chapter 4 |
+| Change | `openspec/changes/<change>/` | The folder of one change. | Chapter 4 |
 | Proposal | `proposal.md` | Why the change exists and what it changes. | Chapters 4 and 5 |
 | Capability | `specs/<capability>/` | The folder for one area of behaviour, such as `purchase`. | Chapters 4 and 6 |
 | Specification | `specs/<capability>/spec.md` | What one change adds, modifies or removes. | Chapters 4 and 6 |
-| Main specification | `openspec/specs/<capability>/spec.md` | The system as it stands. Archive writes it. | Chapters 4 and 6 |
+| Main specification | `openspec/specs/<capability>/spec.md` | The system as it stands. | Chapters 4 and 6 |
 | Design | `design.md` | How the work is done. | Chapters 4 and 7 |
 | Tasks | `tasks.md` | The checks that turn the design into work. | Chapters 4 and 8 |
 | Schema marker | `.openspec.yaml` | The schema the change follows, and `skip_specs` when it has no deltas. | Chapter 4 |
 
-The two tables answer different questions. The first says what happens to a change over time, and the second says what the change's folder holds. A reader who keeps them apart will see that the tool's stages are not documents, and that the documents are not a checklist of stages. Validation and archive are the only stages that do not add a file to the change; `validate` reads the delta, and archive writes the delta into the main specification and moves the change out of the working folder.
+The two tables answer different questions, and a reader who keeps them apart will see that the tool's stages are not documents, and that the documents are not a checklist of stages. Validation and archive are the only stages that do not add a file to the change.
 
 The example change is `give-exact-change`. It lives in `../vending-machine`, a separate repository with its own OpenSpec root, and it adds a capability called `purchase`. Its first requirement is the one this chapter follows to the end: the machine gives change in coins from its stock. A second change, `refuse-without-exact-change`, revises that requirement. Both changes are archived in the example repository, and the quotations below are taken from them as they were written.
 
@@ -72,7 +72,7 @@ The specification, which is the delta in the change's folder, states what the sy
 | Specification | Description |
 |---|---|
 | Purpose | For a new capability: one or two sentences on what the capability is for. Archiving copies it into the main specification. The first delta has one. |
-| ADDED / MODIFIED Requirements | The operation the delta performs on the requirements of the main specification. The first change adds two requirements; the second change modifies one. |
+| ADDED / MODIFIED Requirements | The operation the delta performs on the requirements of the main specification. |
 | Requirement | One statement of what the system must do, written with SHALL. |
 | Scenario | One case under a requirement, written as WHEN, the condition that can be set up, and THEN, the outcome that can be decided. |
 
@@ -126,7 +126,7 @@ The design is the third artifact. It records the decisions the requirement leave
 | Decisions | Each decision, with the reason for it and, where one was rejected, the alternative. The default template asks for "rationale and alternatives considered". |
 | Risks / Trade-offs | Each risk, followed by its mitigation. The first design names one risk: the stock of coins runs down, and refilling is left outside the change. |
 
-The first design's Context states the requirement it serves and says what the design covers. Its goals and non-goals come next, then its decisions, and its risks last. The layout of each decision, as a decision, a reason and, where one was rejected, an alternative, is this project's own. The tool's template asks for decisions with rationale and alternatives, and does not prescribe a layout. The design of `give-exact-change`, `design.md`, is shown in full as archived. It reads:
+The layout of each decision, as a decision, a reason and, where one was rejected, an alternative, is this project's own. The tool's template asks for decisions with rationale and alternatives, and does not prescribe a layout. The design of `give-exact-change`, `design.md`, is shown in full as archived. It reads:
 
 ```markdown
 ## Context
@@ -193,7 +193,7 @@ The tasks are the last artifact. They turn the design into checks, one for each 
 | Task | A checkbox with a number and a description of the check. `[ ]` is open and `[x]` is done. |
 | Verified by | A clause after the task that names the evidence the check passed. The example's own rules fix the clause's wording, the default instruction asks each task to state how it is verified, and the template has no part for it. |
 
-The tasks of `give-exact-change`, `tasks.md`, are shown in full as archived. They name three checks under one group heading, and the first two of them walk a scenario through the design:
+The tasks of `give-exact-change`, `tasks.md`, are shown in full as archived:
 
 ```markdown
 ## 1. Check the first version
@@ -209,11 +209,11 @@ A task list is easy to read as a plan of work. The tasks in this example are che
 
 ## 4.6 Archiving the first change
 
-Archiving closes a change. Until then, the change is a set of artifacts that describe a behaviour the system does not yet have. After archiving, the change folder is kept as a record, and the behaviour it describes is part of the main specification. Archiving is done in one run, but it decides what the next change is checked against, so it is shown here on its own.
+Archiving closes a change. It is done in one run, but it decides what the next change is checked against, so it is shown here on its own.
 
-The first change is ready for archiving when two things hold. Its tasks are checked, and validation passes: task 1.3 records the validation command passing. Its design's Findings also walk through both of its scenarios, so the design and the scenarios agree on the cases that existed when the change was written.
+The first change is ready for archiving when two things hold: its tasks are checked, and its design's Findings walk through both of its scenarios, so the design and the scenarios agree on the cases that existed when the change was written.
 
-For a new capability, archiving does four things. It creates the main specification for the capability, `openspec/specs/purchase/spec.md`. It copies the delta's Purpose into that file, which is why the delta begins with a Purpose section: without one, the new file carries a placeholder that someone has to replace by hand. It writes the delta's requirements into the file. And it moves the change folder into the archive, under its date, so the folder is kept as a record but is no longer work in progress. The first lines of `openspec/specs/purchase/spec.md`, as `give-exact-change` left them when it was archived, read:
+For a new capability, archiving does four things. It creates the main specification for the capability, `openspec/specs/purchase/spec.md`. It copies the delta's Purpose into that file, which is why the delta begins with a Purpose section: without one, the new file carries a placeholder that someone has to replace by hand. It writes the delta's requirements into the file. And it moves the change folder into the archive, under its date, so the folder is kept as a record but is no longer work in progress, and the behaviour it describes is part of the main specification. The first lines of `openspec/specs/purchase/spec.md`, as `give-exact-change` left them when it was archived, read:
 
 ```markdown
 # purchase Specification
@@ -235,7 +235,7 @@ Archiving does not decide whether the change is right. That was decided earlier,
 
 ## 4.7 The case nobody had written
 
-The second change, `refuse-without-exact-change`, starts from the main specification that section 4.6 created. It modifies one of that file's requirements, so it can be written only after the first change is closed. Its archive is in section 4.14. The case it starts from is one the first version lacked. The requirement says the machine returns the difference in coins from its stock, so the question is what happens when the stock cannot make that difference. The stock in the case holds one coin of 10 cents and no coin of 20 or 50 cents. Walked through the first design, the case fails. The design had named this case as a non-goal, so it never decided it. The design releases the product, returns 10 of the 30 cents owed, and cannot return the remaining 20. The walkthrough is recorded in the Findings of `design.md` in the change `refuse-without-exact-change`, labelled Trace A. It reads:
+The second change, `refuse-without-exact-change`, starts from the main specification that section 4.6 created. Its archive is in section 4.14. The case it starts from is one the first version lacked. The requirement says the machine returns the difference in coins from its stock, so the question is what happens when the stock cannot make that difference. The stock in the case holds one coin of 10 cents and no coin of 20 or 50 cents. Walked through the first design, the case fails. The design had named this case as a non-goal, so it never decided it. The walkthrough is recorded in the Findings of `design.md` in the change `refuse-without-exact-change`, labelled Trace A. It reads:
 
 ```markdown
 **Trace A: the first design, scenario "Stock cannot make the change".** The price is
@@ -249,9 +249,7 @@ The walkthrough shows two symptoms. The product is released before the change is
 
 ## 4.8 The correction
 
-This section describes the second change, `refuse-without-exact-change`. It is a separate change, with its own folder and its own artifacts, and it does not edit the first change. The first change was archived in section 4.6, before the second one began. Its requirement was in the main specification, and its design was not reopened.
-
-The second change starts where section 4.7 ends. Its proposal gives the reason in its Why section: the first version has no answer for a stock that cannot make the change, the walkthrough of the scenario shows two symptoms, and validation had passed the first version anyway. Its design says that it replaces the order of steps of the first design, and it records the walkthrough that shows why.
+This section describes the second change, `refuse-without-exact-change`. It is a separate change, with its own folder and its own artifacts, and it does not edit the first change: the first change's design was not reopened. The second change starts where section 4.7 ends.
 
 The second change does three things, and each one is in a different artifact:
 
@@ -259,7 +257,7 @@ The second change does three things, and each one is in a different artifact:
 - Its specification adds a scenario for a stock that cannot make the change.
 - Its design works out the change before the product is released.
 
-Each of the four files of the second change has its own section below, in the order the schema declares them: the proposal, the specification, the design and the tasks. Each section follows the pattern of the matching section for the first change, so that the two can be read side by side. Section 4.13 sets the two changes against each other.
+Each of the four files of the second change has its own section below, in the order the schema declares them: the proposal, the specification, the design and the tasks. Each section follows the pattern of the matching section for the first change, so that the two can be read side by side.
 
 ## 4.9 The proposal of the second change
 
@@ -371,7 +369,7 @@ The design of the second change explains the requirement's new outcome, not only
 |---|---|
 | Context | Names the first design by its change and says that this design replaces its order of steps. |
 | Goals / Non-Goals | One goal: exact change, or refusal with the amount inserted returned. Two non-goals: the coin denominations and any message to the customer. |
-| Decisions | Two decisions, each with a reason, and two rejected alternatives. The first design recorded no alternative. |
+| Decisions | Two decisions, each with a reason, and two rejected alternatives. |
 | Risks / Trade-offs | One risk: refusals become more likely as the stock runs down. The design leaves the mitigation outside the change. |
 | Findings | Traces B, C and D for the revised design, and Trace A for the first. Not a template part; the example keeps it as a stated exception, explained in section 4.4. |
 
@@ -426,11 +424,7 @@ because the product is already gone when the refund is decided.
 
 ## Findings
 
-**Trace A: the first design, scenario "Stock cannot make the change".** The price is
-70, 100 is inserted, so 30 is owed. The stock holds one coin of 10 and none of 20.
-The first design releases the product first. The largest coin that does not exceed 30
-is 10, so one is returned and 20 is still owed. No coin can be returned for 20. The
-customer leaves with the product and 10 of the 30 owed, and nothing says so.
+[Trace A, quoted in section 4.7.]
 
 This trace shows both symptoms. The product is released before the change is worked
 out (symptom 1), and the change returned is less than owed without a signal (symptom
@@ -451,7 +445,7 @@ owed. The change is exact, so the product is released and no coin is returned. T
 scenario is satisfied.
 ```
 
-The first design's non-goals set aside the case that this design decides. That is the central difference in this file. The first design named the case as outside its scope, so its decisions never reached it. This design takes the case into its decisions, and keeps only the coin denominations and the customer message out of scope.
+The first design's non-goals set aside the case that this design decides. That is the central difference in this file. This design takes the case into its decisions, and keeps only the coin denominations and the customer message out of scope.
 
 The two rejected alternatives show what this design gave up. The first, releasing the product and returning what can be made, keeps the first design's behaviour in a form the new requirement forbids. The second, releasing the product and refunding the rest later, moves the failure to a later time without removing it, because the product is already gone when the refund is decided. Both alternatives keep the release-first order, which is why the order is the decision that changes.
 
@@ -488,25 +482,15 @@ The task is quoted as written. The word "exact" is in the revised requirement an
 
 Task 2.1 is verified by the decisions in the design, not by a walkthrough. That is a weaker check than the others, and it is shown here as it is written. The revision is accepted on the strength of its own text until task 2.2 tests the revised design against all three scenarios. The walkthrough, not the revision, is what closes this part of the change.
 
-Task 2.3 runs validation again, and it passes. The first change's validation also passed while its design failed a case. A passing validation at the end of this change says nothing about the case; the traces in task 2.2 carry that evidence.
+Task 2.3 runs validation again, and it passes. As in the first change, the pass says nothing about the case; the traces in task 2.2 carry that evidence.
 
 ## 4.13 How the second change differs from the first
 
-The two changes use the same four artifacts, but they do different work on the main specification. The first creates a file, and the second changes a requirement in it. The differences below follow the artifacts in order. Each one comes from the job the change does, not from its format.
-
-**Proposal.** The first proposal gives a reason from a situation: a customer who pays more than the price. The second gives a reason from a finding: a walkthrough that failed. The first names a capability it creates; the second names one it modifies. A proposal can state a failure only after the failure has been found, so the second proposal could not have been written before section 4.7.
-
-**Specification.** The first delta adds two requirements under ADDED and begins with a Purpose. The second replaces one requirement under MODIFIED and has no Purpose. The second requirement is longer, because a modified requirement must be written in full. Its three scenarios include the two that the first change wrote, unchanged, and one new scenario, so the requirement is checked against the old cases and the new one.
-
-**Design.** The first design chose an order and gave one reason for each decision. It recorded no rejected alternative and no case it had set aside. The second design reverses the first design's order: the change is worked out before the product is released. It records two rejected alternatives, and its non-goals are narrower, because the case the first design set aside is now decided.
-
-**Tasks.** The first change had one group of three tasks, and each one checked a scenario that already existed. The second has two groups and five tasks. One task creates a scenario, and one is verified by a decision rather than by a trace. Validation passes in both changes, and in both it is not what shows whether the design fits the scenarios.
-
-**Archive.** Archiving the first change created the main specification. Archiving the second changes one requirement in it and leaves the Purpose as it was. The first version stays in the history of the example repository, where the two commits show what was written first and what replaced it.
+The two changes use the same four artifacts, but they do different work on the main specification. The first creates a file, and the second changes a requirement in it. Each difference that sections 4.9 to 4.12 point out between the two comes from that job, not from the format.
 
 ## 4.14 The archive of the second change
 
-When the second change is archived, its delta is merged into the main specification that the first change created, and its folder is moved into the archive, under its date. The delta modifies one requirement, so it replaces that requirement and adds no file. From then on the specification is the record of the requirement. The requirement as the change `refuse-without-exact-change` left it in `openspec/specs/purchase/spec.md` begins:
+When the second change is archived, its delta is merged into the main specification that the first change created. The delta modifies one requirement, so it replaces that requirement, adds no file and leaves the Purpose as it was. From then on the specification is the record of the requirement. The requirement as the change `refuse-without-exact-change` left it in `openspec/specs/purchase/spec.md` begins:
 
 ```markdown
 The machine SHALL return to the customer the difference between the amount inserted
@@ -515,6 +499,6 @@ that exact amount, it SHALL refuse the purchase, release no product, and return 
 amount inserted.
 ```
 
-The archive keeps the change folder with its design and its findings, so the path from the first version to the corrected one can still be read. The main specification is different: it is what the next change is checked against, so a wrong requirement that reaches it is paid for by every later change that relies on it. Archiving is therefore the point at which a change stops being a proposal and starts being the system's description.
+The archive keeps the change folder with its design and its findings, so the path from the first version to the corrected one can still be read, and the two commits in the history of the example repository show what was written first and what replaced it. The main specification is different: a wrong requirement that reaches it is paid for by every later change that relies on it. Archiving is therefore the point at which a change stops being a proposal and starts being the system's description.
 
 The path from request to archive has four artifacts, taken in the order of section 4.1, and each answers a question the one before it left open. The proposal says why, the specification says what must hold, the design says how the machine gets there, and the tasks say what has to be checked for each part of the design. The example also showed that a passing validation is not the same as a design that agrees with its scenarios. The first version passed validation and every task, and it still failed a case that had not yet been written. The failure was found by writing that case down, and it was fixed in the artifacts. The next chapters take each artifact in turn; this one has shown what each looks like and where they meet.

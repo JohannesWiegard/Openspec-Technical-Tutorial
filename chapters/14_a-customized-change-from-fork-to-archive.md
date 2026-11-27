@@ -2,7 +2,7 @@
 
 The previous chapter said what can be customized and what the tool checks of each kind. This chapter shows it. It takes the vending machine's second change, `refuse-without-exact-change`, which chapter 4 quotes in full, and makes it again under a schema of its own, `with-trace`. The schema adds one artifact, a trace, between the design and the tasks. Every file that the customization adds or changes is shown, and so is the console input and the main output of each step. The proposal, the delta, the design and the tasks of the change are chapter 4's, and are pointed at and not repeated. The four needs of the example and the place where each is made are in the table of section 13.6.
 
-The walkthrough ran in a scratch project on 26 November 2026, which starts from the machine's own configuration and a main specification that holds the first change's result. This chapter is the only one of the book that shows console blocks, because its claims are what the program printed and a reader can only check them by seeing it. A line that begins with `$ ` is input, and what follows is the program's output. The project's folder is written as `.`, the program's own install folder as `<package>`, and a line of three dots marks output that is cut. No block shows the work of an agent. The files were written by hand in the scratch project.
+The walkthrough ran in a scratch project on 26 November 2026. This chapter is the only one of the book that shows console blocks, because its claims are what the program printed and a reader can only check them by seeing it. A line that begins with `$ ` is input, and what follows is the program's output. The project's folder is written as `.`, the program's own install folder as `<package>`, and a line of three dots marks output that is cut. No block shows the work of an agent. The files were written by hand in the scratch project.
 
 ## 14.1 Preparing the harness
 
@@ -218,7 +218,7 @@ The apply instruction is the schema's. It appears in the output once the change 
 
 ## 14.4 The trace is the new file
 
-The proposal, the delta, the design and the tasks of the change are chapter 4's, and they are written as it quotes them. Once the proposal exists, `specs` and `design` are ready, and the trace waits for both. After the design the program says that the trace is next, and that the tasks wait for it alone.
+The four default artifacts are written as chapter 4 quotes them. After the design the program says that the trace is next, and that the tasks wait for it alone.
 
 ```
 $ openspec status --change refuse-without-exact-change
@@ -237,7 +237,7 @@ Progress: 3/5 artifacts complete
 Next: openspec instructions trace --change "refuse-without-exact-change" --json
 ```
 
-The trace is written from the design's Findings, where chapter 4 quotes Traces B, C and D. No archive holds this file, so it is written for the chapter, as the previous chapter's example was, and it is not the output of an agent run. Its three rows are the three scenarios of the delta, each with the decision in the design that satisfies it.
+The trace is written from the design's Findings, where chapter 4 quotes Traces B, C and D. No archive holds this file, so it is written for the chapter, as the previous chapter's example was. Its three rows are the three scenarios of the delta, each with the decision in the design that satisfies it.
 
 ```
 ## Trace
@@ -303,7 +303,7 @@ $ openspec instructions apply --change refuse-without-exact-change --json
 }
 ```
 
-The last two lines are the diff's. The program returns them and counts nothing of whether they are kept. With the boxes ticked, `validate` passes the change.
+With the boxes ticked, `validate` passes the change.
 
 ```
 $ openspec validate refuse-without-exact-change --strict
