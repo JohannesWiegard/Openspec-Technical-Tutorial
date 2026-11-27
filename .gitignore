@@ -1,10 +1,9 @@
-# This repository publishes only the book: README.md, chapters/ and dist/.
+# This repository publishes the book (README.md, chapters/ and dist/) and
+# the script that publishes it (scripts/).
 # Everything else is ignored by default and has to be allowed explicitly.
 /*
 !/.gitignore
 !/README.md
 !/chapters/
 !/dist/
-
-# Local publishing tooling, never published.
-/scripts/
+!/scripts/
